@@ -39,7 +39,7 @@ function CreateCvPage() {
     };
 
     return (
-        <div className="sa4d25" style={{ marginBottom: 0 }}>
+        <div className="sa4d25" style={{ marginBottom: 200 }}>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-lg-12">
