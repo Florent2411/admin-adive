@@ -1,24 +1,24 @@
 
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchJobs, selectJob } from '../redux/actions/jobsActions';
-import Job from '../components/Job';
+import { fetchTrainings, selectTraining } from '../redux/actions/trainingsActions';
+import Training from '../components/Training';
 import Skelet from '../components/Skeleton';
 
-const JobsPage = () => {
-    const jobs = useSelector((state) => state.jobs.jobs);
+const TrainingsPage = () => {
+    const trainings = useSelector((state) => state.trainings.trainings);
     const loading = useSelector((state) => state.jobs.loading);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(fetchJobs());
+        dispatch(fetchTrainings());
     }, [dispatch]);
 
-    const handleJobClick = (jobId) => {
-        navigate(`/job-details/${jobId}`);
-        dispatch(selectJob(jobId));
+    const handleTrainingClick = (trainingId) => {
+        navigate(`/training-details/${trainingId}`);
+        dispatch(selectTraining(trainingId));
     };
 
     return (
@@ -40,8 +40,8 @@ const JobsPage = () => {
                     <div className="col-md-12">
                         <div className="_14d25">
                             <div className="row">
-                                {!loading && jobs.map((job) => (
-                                    <Job job={job} onClick={() => handleJobClick(job.id)}/>
+                                {!loading && trainings.map((training) => (
+                                    <Training training={training} onClick={() => handleTrainingClick(training.id)} />
                                 ))}
                                 {loading && <Skelet />}
                                 <div className="col-md-12">
@@ -63,4 +63,4 @@ const JobsPage = () => {
     );
 }
 
-export default JobsPage;
+export default TrainingsPage;

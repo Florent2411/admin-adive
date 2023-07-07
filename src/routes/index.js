@@ -11,6 +11,8 @@ import Footer from '../components/Footer';
 import CreateCvPage from '../pages/CreateCvPage';
 import JobsPage from '../pages/JobsPage';
 import JobDetailsPage from '../pages/JobDetailsPage';
+import TrainingsPage from '../pages/TrainingsPage';
+import TrainingDetailsPage from '../pages/TrainingDetailsPage';
 
 function Routers() {
 
@@ -38,6 +40,8 @@ function Routers() {
               <Route exact path="/create-cv" element={<CreateCvPage />} />
               <Route exact path="/jobs" element={<JobsPage />} />
               <Route exact path="/job-details/:id" element={<JobDetailsPage />} />
+              <Route exact path="/trainings" element={<TrainingsPage />} />
+              <Route exact path="/training-details/:id" element={<TrainingDetailsPage />} />
             </Routes>
             <Footer />
           </div>

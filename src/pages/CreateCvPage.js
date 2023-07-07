@@ -19,7 +19,7 @@ function CreateCvPage() {
         experiences: '',
         birthDate: '',
         education: '',
-        other: '',
+        other: '', 
         langue: ''
     });
 

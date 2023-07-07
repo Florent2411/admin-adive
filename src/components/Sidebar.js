@@ -32,7 +32,7 @@ function Sidebar() {
               </a>
             </li>
             <li className="menu--item">
-              <a href="#" className="menu--link" title='Formations'>
+              <a href="/trainings" className="menu--link" title='Formations'>
                 <i className="uil uil-analysis menu--icon" />
                 <span className="menu--label">Formations</span>
               </a>

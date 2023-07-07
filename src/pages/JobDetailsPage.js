@@ -1,36 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { Avatar } from 'antd';
-import { connect } from 'react-redux';
-import { selectJob, fetchJobs } from '../redux/actions/jobsActions';
-import { useParams } from 'react-router-dom';
-import Job from '../components/Job';
-import Skelet from '../components/Skeleton';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectJob } from '../redux/actions/jobsActions';
+import { useNavigate } from 'react-router-dom';
 
-function JobDetailsPage({ selectedJob, selectJob, jobs, fetchJobs, loading }) {
-    console.log(selectedJob)
-    //console.log(selectJob)
-    const { id } = useParams();
-    //const { loading, jobs, fetchJobs } = props;
+export default function JobDetailsPage() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
+    const selectedJobId = useSelector((state) => state.jobs.selectedJobId);
+    const selectedJob = useSelector((state) =>
+        state.jobs.jobs.find(job => job.id == selectedJobId)
+    );
 
-    useEffect(() => {
-        selectJob(id);
-    }, [id, selectJob]);
+    //console.log(selectedJobId)
 
     useEffect(() => {
-        fetchJobs();
-    }, [fetchJobs]);
-
+        dispatch(selectJob(selectedJobId));
+    }, [selectedJobId]);
 
     return (
-        <div style={{ marginBottom: 550 }}>
+        <div style={{ marginBottom: 900 }}>
             <div className="sa4d25">
                 <div className="container-fluid">
-                    <div className="row justify-content-md-center">
+                    <div className="row justify-content-md-center" style={{ marginBottom: 30 }}>
                         <div className="col-md-10">
                             <div className="section3125 rpt145">
                                 <div className="row">
-                                    <div className="col-lg-10">
+                                    <div className="col-lg-7">
                                         <a href="#" className="_216b22">
                                             <span><i className="uil uil-windsock" /></span>
                                         </a>
@@ -69,6 +66,14 @@ function JobDetailsPage({ selectedJob, selectJob, jobs, fetchJobs, loading }) {
                                                 </div>
                                             </li>
                                         </ul>
+                                    </div> 
+                                    <div class="col-lg-5">
+                                        <ul class="_bty149">
+                                            <li><button class="subscribe-btn btn500" onClick={() => {
+                                                navigate("/jobs")
+                                            }}>Retour</button></li>
+                                            <li><button class="msg125 btn500">Postuler</button></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +90,6 @@ function JobDetailsPage({ selectedJob, selectJob, jobs, fetchJobs, loading }) {
                                     <nav>
                                         <div className="nav nav-tabs tab_crse" id="nav-tab" role="tablist">
                                             <a className="nav-item nav-link active" id="nav-about-tab" data-toggle="tab" href="#nav-about" role="tab" aria-selected="true">A Propos De L'Emploi</a>
-                                            <a className="nav-item nav-link" id="nav-courses-tab" data-toggle="tab" href="#nav-courses" role="tab" aria-selected="false">Les Autres Emplois</a>
                                         </div>
                                     </nav>
                                 </div>
@@ -104,27 +108,7 @@ function JobDetailsPage({ selectedJob, selectJob, jobs, fetchJobs, loading }) {
                                                 <div className="_htg452">
                                                     <h3>Description</h3>
                                                     <p style={{ textAlign: "justify" }}>{selectedJob.attributes.description}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="tab-pane fade" id="nav-courses" role="tabpanel">
-                                            <div className="crse_content">
-                                                <h3>Autres Emplois</h3>
-                                                <div className="_14d25">
-                                                    <div className="row">
-                                                        {!loading && jobs.map((job) => (
-                                                            <Job
-                                                                title={job.attributes.titre}
-                                                                expiration={job.attributes.date_expiration}
-                                                                publication={job.attributes.date_publication}
-                                                                description={job.attributes.description}
-                                                                //jobDomain={job.attributes.jobdomain.data.attributes.nom}
-                                                                job={job}
-                                                            />
-                                                        ))}
-                                                        {loading && <Skelet />}
-                                                    </div>
-                                                </div>
+                                                </div> 
                                             </div>
                                         </div>
                                     </div>
@@ -139,19 +123,3 @@ function JobDetailsPage({ selectedJob, selectJob, jobs, fetchJobs, loading }) {
     );
 };
 
-const mapStateToProps = (state) => {
-    return {
-        selectedJob: state.jobs.selectedJob,
-        jobs: state.jobs.jobs,
-        loading: state.jobs.loading
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        selectJob: (jobId) => dispatch(selectJob(jobId)),
-        fetchJobs: () => dispatch(fetchJobs())
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(JobDetailsPage);

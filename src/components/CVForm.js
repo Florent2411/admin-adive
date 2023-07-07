@@ -3,7 +3,7 @@ import React from 'react';
 function CVForm({ cvData, onChange, picture }) {
     return (
         <div className="col-lg-4 col-md-12">
-            <div className="sign_form" style={{padding: 20}}>
+            <div className="sign_form" style={{ padding: 20 }}>
                 <h2>Création Du CV</h2>
                 <div className="ui search focus mt-15">
                     <div className="ui input swdh95">
@@ -59,6 +59,16 @@ function CVForm({ cvData, onChange, picture }) {
                 <div className="ui search focus mt-15">
                     <div className="ui input swdh95">
                         <input className="prompt srch_explore"
+                            type="date"
+                            name="birthDate"
+                            value={cvData.birthDate}
+                            onChange={onChange}
+                            placeholder="Date De Naissance" />
+                    </div>
+                </div>
+                <div className="ui search focus mt-15">
+                    <div className="ui input swdh95">
+                        <input className="prompt srch_explore"
                             type="file"
                             name="picture"
                             //value={picture}
@@ -103,20 +113,10 @@ function CVForm({ cvData, onChange, picture }) {
                     <div className="ui input swdh95">
                         <input className="prompt srch_explore"
                             type="text"
-                            name="hobbies"
+                            name="experiences"
                             value={cvData.experiences}
                             onChange={onChange}
                             placeholder="Expériences Professionnelles" />
-                    </div>
-                </div>
-                <div className="ui search focus mt-15">
-                    <div className="ui input swdh95">
-                        <input className="prompt srch_explore"
-                            type="date"
-                            name="birthDate"
-                            value={cvData.birthDate}
-                            onChange={onChange}
-                            placeholder="Date De Naissance" />
                     </div>
                 </div>
                 <div className="ui search focus mt-15">

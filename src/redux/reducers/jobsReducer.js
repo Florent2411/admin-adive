@@ -1,7 +1,7 @@
 const initialState = {
   jobs: [],
   loading: true,
-  selectedJob: null,
+  selectedJobId: null,
 };
 
 export const jobsReducer = (state = initialState, action) => {
@@ -13,12 +13,9 @@ export const jobsReducer = (state = initialState, action) => {
         loading: false,
       };
     case 'SELECT_JOB':
-      const selectedJobId = action.payload;
-      const selectedJob = state.jobs.find((job) => job.id == selectedJobId);
-      //console.log(selectedJobId)
       return {
         ...state,
-        selectedJob: selectedJob || null,
+        selectedJobId: action.payload,
       };
     default:
       return state;

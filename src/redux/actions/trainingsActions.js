@@ -22,3 +22,10 @@ export const fetchTrainings = () => {
       });
   };
 };
+
+export const selectTraining = (trainingId) => {
+  return {
+    type: 'SELECT_TRAINING',
+    payload: trainingId,
+  };
+};

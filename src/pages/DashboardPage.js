@@ -1,10 +1,20 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import CountUp from 'react-countup';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchJobs } from '../redux/actions/jobsActions';
 
 function DashboardPage() {
+    const dispatch = useDispatch();
+    const jobs = useSelector((state) => state.jobs.jobs);
+    //console.log(jobs)
+    
+    useEffect(() => {
+        dispatch(fetchJobs());
+    }, [dispatch]);
+
     return (
-        <div className="sa4d25" style={{marginBottom: 0}}>
+        <div className="sa4d25" style={{ marginBottom: 0 }}>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-lg-12">
