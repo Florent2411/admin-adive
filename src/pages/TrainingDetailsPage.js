@@ -34,7 +34,7 @@ function TrainingDetailsPage() {
                                                 <div className="course-overlay">
                                                     <div className="badge_seller">{selectedTraining.attributes.avec_certificat ? "Certification" : "Sans Certification"}</div>
                                                     <span className="play_btn1"><i className="uil uil-play" /></span>
-                                                    <span className="_215b02">Preview this course</span>
+                                                    <span className="_215b02">{selectedTraining.attributes.lieu}</span>
                                                 </div>
                                             </a>
                                         </div>
@@ -60,10 +60,21 @@ function TrainingDetailsPage() {
                                             Denière modification le {selectedTraining.attributes.updatedAt.slice(0, 10)}
                                         </div>
                                         <ul className="_215b31">
-                                            <li><button className="btn_adcart" onClick={() => {
-                                                navigate("/trainings")
-                                            }}>Retour</button></li>
+                                            <li>
+                                                <button className="btn_adcart" onClick={() => {
+                                                    navigate("/trainings")
+                                                }}>
+                                                    Retour
+                                                </button>
+                                            </li>
                                             <li><button className="btn_buy">Commencer</button></li>
+                                            <li>
+                                                <button className="btn_adcart" onClick={() => {
+                                                    navigate("/certification-center")
+                                                }}>
+                                                    Passer La Certification
+                                                </button>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>

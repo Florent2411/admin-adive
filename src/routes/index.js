@@ -13,6 +13,9 @@ import JobsPage from '../pages/JobsPage';
 import JobDetailsPage from '../pages/JobDetailsPage';
 import TrainingsPage from '../pages/TrainingsPage';
 import TrainingDetailsPage from '../pages/TrainingDetailsPage';
+import CertificationCenter from '../pages/CertificationCenter';
+import CertificationTest from '../pages/CertificationTest';
+import CertificationTestResult from '../pages/CertificationTestResult';
 
 function Routers() {
 
@@ -42,6 +45,9 @@ function Routers() {
               <Route exact path="/job-details/:id" element={<JobDetailsPage />} />
               <Route exact path="/trainings" element={<TrainingsPage />} />
               <Route exact path="/training-details/:id" element={<TrainingDetailsPage />} />
+              <Route exact path="/certification-center" element={<CertificationCenter />} />
+              <Route exact path="/certification-test" element={<CertificationTest />} />
+              <Route exact path="/certification-test-result" element={<CertificationTestResult />} />
             </Routes>
             <Footer />
           </div>
