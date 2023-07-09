@@ -123,3 +123,30 @@ h2 {
 .experience-list {
     list-style-type: circle;
 }
+
+
+.json-form-container {
+    margin-bottom: 20px;
+  }
+  
+  .json-form-control {
+    margin-bottom: 10px;
+  }
+  
+  .json-form-label {
+    font-weight: bold;
+  }
+  
+  .json-form-input {
+    width: 100%;
+    padding: 5px;
+  }
+  
+  .json-form-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }

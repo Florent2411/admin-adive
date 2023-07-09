@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
 
   return (
-    <footer className="footer mt-40"  style={{ position: "fixed", bottom: 0, marginTop: 0}}>
+    <footer className="footer mt-40"  style={{ /* position: "fixed", */ bottom: 0, marginTop: 0}}>
           <div className="container-fluid">
             <div className="row">
               {/* <div className="col-lg-12">

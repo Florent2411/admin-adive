@@ -72,7 +72,7 @@ function CVPreview({ cvData, selectedFile, onChange }) {
                             className="item channel_item"
                         >
                             En Image
-                        </a>
+                        </a> 
                         {/* <a href="#"
                         onClick={exportCVToWord}
                         className="item channel_item"

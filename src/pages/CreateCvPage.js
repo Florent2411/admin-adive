@@ -14,9 +14,9 @@ import uischema from "../json-schema//uischema.json";
 import initial from "../json-schema//initial.json";
 //import { materialCells, materialRenderers } from "@jsonforms/material-renderers";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`; 
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-function CreateCvPage() { 
+function CreateCvPage() {
 
     const [cvData, setCVData] = useState({
         name: '',
@@ -78,7 +78,7 @@ function CreateCvPage() {
         setDisplayDataAsString(JSON.stringify(jsonformsData, null, 2));
     }, [jsonformsData]);
 
-    const clearData = () => { 
+    const clearData = () => {
         setJsonformsData({});
     };
 
@@ -163,7 +163,7 @@ function CreateCvPage() {
                                             errors?.map((err) => err.message)[errors.length - 1]
                                         );
                                     }}
-                                /> 
+                                />
                             </div>
                             <Button
                                 className="resetbutton"
