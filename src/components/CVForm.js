@@ -1,10 +1,10 @@
 import React from 'react';
 
-function CVForm({ cvData, onChange, picture }) {
+function CVForm({ cvData, onChange }) {
     return (
         <div className="col-lg-4 col-md-12">
             <div className="sign_form" style={{ padding: 20 }}>
-                <h2>Création Du CV</h2>
+                <h2>FOrmulaire Du CV</h2>
                 <div className="ui search focus mt-15">
                     <div className="ui input swdh95">
                         <input
