@@ -24,13 +24,7 @@ const Training = ({ training, onClick }) => {
                     </a>
                     <div className="fcrse_content">
                         <div className="eps_dots more_dropdown">
-                            <a href="#"><i className="uil uil-ellipsis-v" /></a>
-                            <div className="dropdown-content">
-                                <span><i className="uil uil-share-alt" />Share</span>
-                                <span><i className="uil uil-heart" />Save</span>
-                                <span><i className="uil uil-ban" />Not Interested</span>
-                                <span><i className="uil uil-windsock" />Report</span>
-                            </div>
+                            <a hstyle={{ cursor: "pointer" }} onClick={onClick}><i className="uil uil-ellipsis-v" /></a>
                         </div>
                         <div className="vdtodt">
                             <span className="vdt14">Date de formation :</span>

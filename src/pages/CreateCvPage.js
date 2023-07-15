@@ -12,7 +12,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import schema from "../json-schema/schema.json";
 import uischema from "../json-schema//uischema.json";
 import initial from "../json-schema//initial.json";
-//import { materialCells, materialRenderers } from "@jsonforms/material-renderers";
+import { materialCells, materialRenderers } from "@jsonforms/material-renderers";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
@@ -142,13 +142,13 @@ function CreateCvPage() {
                         {/* <CVExport cvData={cvData} /> */}
                     </div>
 
-                    <div className="col-lg-12 col-md-12">
+                   {/*  <div className="col-lg-12 col-md-12">
                         <div className="sign_form" style={{ padding: 20, display: "flex", justifyContent: "space-between" }}>
                             <img src="/assets/images/cv-templates/template_1.png" width={"10%"} style={{ height: 150 }} alt />
                             <img src="/assets/images/cv-templates/template_2.png" width={"10%"} style={{ height: 150 }} alt />
                         </div>
-                    </div>
-                    <div className="col-lg-12 col-md-12" style={{ marginTop: 10 }}>
+                    </div> */}
+                   {/*  <div className="col-lg-12 col-md-12" style={{ marginTop: 10 }}>
                         <div className="col-lg-6 col-md-6">
                             <div>
                                 <JsonForms
@@ -186,7 +186,7 @@ function CreateCvPage() {
                         <div className="col-lg-6 col-md-6">
 
                         </div>
-                    </div>
+                    </div> */}
                     <div className="container-fluid mt-15">
                         <div className="row">
                             <CVForm cvData={cvData} onChange={handleFormChange} />
