@@ -1,151 +1,152 @@
 .count {
-    font-size: 24px !important;
-    color: #fff !important;
-    font-family: 'Roboto', sans-serif !important;
-    font-weight: 500 !important;
-    margin-bottom: 15px !important;
-    text-align: left !important;
-    margin-top: 0 !important;
-    background: none !important;
+  font-size: 24px !important;
+  color: #fff !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 500 !important;
+  margin-bottom: 15px !important;
+  text-align: left !important;
+  margin-top: 0 !important;
+  background: none !important;
 }
 
-
-
-
 a {
-    text-decoration: none;
-    color: #4472C4;
+  text-decoration: none;
+  color: #4472c4;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 p {
-    margin: 0 0 1rem;
-    text-align: justify;
-    line-height: 2;
+  margin: 0 0 1rem;
+  text-align: justify;
+  line-height: 2;
 }
 
 h1 {
-    margin: 0 0 1rem;
-    font-size: 2.5rem;
-    margin-bottom: .5rem;
+  margin: 0 0 1rem;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
 h2 {
-    margin: 0 0 1rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+  margin: 0 0 1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .text-blue {
-    color: #4472C4;
+  color: #4472c4;
 }
 
 .text-darkblue {
-    color: #002060;
+  color: #002060;
 }
 
 .text-uppercase {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .icon {
-    margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .cv-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas: "left-column right-column right-column";
-    width: 100%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "left-column right-column right-column";
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
 
 .section {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .left-column {
-    grid-area: left-column;
-    padding: 20px;
-    /*background-color: #4472C4;
+  grid-area: left-column;
+  padding: 20px;
+  /*background-color: #4472C4;
     color: white;*/
 }
 
 .portait {
-    border-radius: 50%;
-    max-width: 150px;
-    margin: auto;
-    display: block;
-    margin-bottom: 50px;
+  border-radius: 50%;
+  max-width: 150px;
+  margin: auto;
+  display: block;
+  margin-bottom: 50px;
 }
 
 .skills {
-    list-style-type: none;
-    padding: 0;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    margin: 0 0 1rem;
+  list-style-type: none;
+  padding: 0;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin: 0 0 1rem;
 }
 
 .right-column {
-    grid-area: right-column;
-    display: grid;
-    grid-template-rows: 250px 1fr;
-    grid-template-areas:
-        "header"
-        "content";
+  grid-area: right-column;
+  display: grid;
+  grid-template-rows: 250px 1fr;
+  grid-template-areas:
+    "header"
+    "content";
 }
 
 .right-column .header {
-    grid-area: header;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  grid-area: header;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .infos {
-    columns: 2;
-    list-style-type: none;
-    padding: 0;
-    line-height: 2;
+  columns: 2;
+  list-style-type: none;
+  padding: 0;
+  line-height: 2;
 }
 
 .content {
-    grid-area: content;
-    padding: 20px;
-    /*background: #333;*/
+  grid-area: content;
+  padding: 20px;
+  /*background: #333;*/
 }
 
 .experience-list {
-    list-style-type: circle;
+  list-style-type: circle;
 }
 
 .json-form-container {
-    margin-bottom: 20px;
-  }
-  
-  .json-form-control {
-    margin-bottom: 10px;
-  }
-  
-  .json-form-label {
-    font-weight: bold;
-  }
-  
-  .json-form-input {
-    width: 100%;
-    padding: 5px;
-  }
-  
-  .json-form-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
+  margin-bottom: 20px;
+}
+
+.json-form-control {
+  margin-bottom: 10px;
+}
+
+.json-form-label {
+  font-weight: bold;
+}
+
+.json-form-input {
+  width: 100%;
+  padding: 5px;
+}
+
+.json-form-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-text:hover {
+  cursor: pointer;
+}

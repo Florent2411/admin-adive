@@ -1,10 +1,16 @@
 import React from 'react';
+import MultiInput from './MultiInput';
+
+//TODO: Integrate with cvData
 
 function CVForm({ cvData, onChange }) {
+
+    console.log(cvData)
+
     return (
         <div className="col-lg-4 col-md-12">
             <div className="sign_form" style={{ padding: 20 }}>
-                <h2>FOrmulaire Du CV</h2>
+                <h2>Formulaire du CV</h2>
                 <div className="ui search focus mt-15">
                     <div className="ui input swdh95">
                         <input
@@ -89,26 +95,8 @@ function CVForm({ cvData, onChange }) {
                         </div>
                     </div>
                 </div>
-                <div className="ui search focus mt-15">
-                    <div className="ui input swdh95">
-                        <input className="prompt srch_explore"
-                            type="text"
-                            name="skills"
-                            value={cvData.skills}
-                            onChange={onChange}
-                            placeholder="Compétences" />
-                    </div>
-                </div>
-                <div className="ui search focus mt-15">
-                    <div className="ui input swdh95">
-                        <input className="prompt srch_explore"
-                            type="text"
-                            name="hobbies"
-                            value={cvData.hobbies}
-                            onChange={onChange}
-                            placeholder="Centres D'Intérets" />
-                    </div>
-                </div>
+                <MultiInput placeholder="Compétences" name="skills" items={cvData.skills} onChange={onChange} />
+                <MultiInput placeholder="Centres d'intérêts" name="hobbies" items={cvData.hobbies} onChange={onChange} />
                 <div className="ui search focus mt-15">
                     <div className="ui input swdh95">
                         <input className="prompt srch_explore"

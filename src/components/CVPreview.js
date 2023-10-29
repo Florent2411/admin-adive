@@ -1,8 +1,8 @@
-import React from 'react';
-import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
+import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
+import React from 'react';
 import ColorPicker from './ColorPicker';
 
 function CVPreview({ cvData, selectedFile, onChange }) {
@@ -28,7 +28,7 @@ function CVPreview({ cvData, selectedFile, onChange }) {
     };
 
     const exportCVToWord = () => {
-
+        //TODO: To be implemented
     }
 
     const exportCVToPDF = () => {
@@ -72,13 +72,7 @@ function CVPreview({ cvData, selectedFile, onChange }) {
                             className="item channel_item"
                         >
                             En Image
-                        </a> 
-                        {/* <a href="#"
-                        onClick={exportCVToWord}
-                        className="item channel_item"
-                    >
-                        En Word
-                    </a> */}
+                        </a>
                         <a href="#"
                             onClick={exportCVToPDF}
                             className="item channel_item"
@@ -98,19 +92,26 @@ function CVPreview({ cvData, selectedFile, onChange }) {
                     )}
                     <div className="section">
                         <h3>À Propos De Moi</h3>
-                        <p style={{color: styles.color}}>{cvData.about ? cvData.about : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                        <p style={{ color: styles.color }}>{cvData.about ? cvData.about : "Aucune information enregistrée dans cette section pour le moment"}</p>
                     </div>
                     <div className="section">
                         <h3>Compétences</h3>
-                        <p style={{color: styles.color}}>{cvData.skills ? cvData.skills : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                        {
+                            cvData.skills.length ?
+                                (cvData.skills.map((skill) => (
+                                    <p key={skill} style={{ color: styles.color }}>{skill}</p>
+                                ))) : (
+                                    <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
+                                )
+                        }
                     </div>
                     <div className="section">
                         <h3>Langues</h3>
-                        <p style={{color: styles.color}}>{cvData.langue ? cvData.langue : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                        <p style={{ color: styles.color }}>{cvData.langue ? cvData.langue : "Aucune information enregistrée dans cette section pour le moment"}</p>
                     </div>
                     <div className="section">
                         <h3>Centres D'Intérêt</h3>
-                        <p style={{color: styles.color}}>{cvData.hobbies ? cvData.hobbies : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                        <p style={{ color: styles.color }}>{cvData.hobbies ? cvData.hobbies : "Aucune information enregistrée dans cette section pour le moment"}</p>
                     </div>
                 </div>
                 <div className="right-column">
@@ -127,15 +128,15 @@ function CVPreview({ cvData, selectedFile, onChange }) {
                     <div className="content">
                         <div className="section">
                             <h3>Expériences <span className="text-blue">Professionelles</span></h3>
-                            <p style={{color: styles.color}}>{cvData.experiences ? cvData.experiences : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                            <p style={{ color: styles.color }}>{cvData.experiences ? cvData.experiences : "Aucune information enregistrée dans cette section pour le moment"}</p>
                         </div>
                         <div className="section">
                             <h3>Études <span className="text-blue">&amp; Formations</span></h3>
-                            <p style={{color: styles.color}}>{cvData.education ? cvData.education : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                            <p style={{ color: styles.color }}>{cvData.education ? cvData.education : "Aucune information enregistrée dans cette section pour le moment"}</p>
                         </div>
                         <div className="section">
                             <h3>Autres <span className="text-blue"> Informations</span></h3>
-                            <p style={{color: styles.color}}>{cvData.other ? cvData.other : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                            <p style={{ color: styles.color }}>{cvData.other ? cvData.other : "Aucune information enregistrée dans cette section pour le moment"}</p>
                         </div>
                     </div>
                 </div>

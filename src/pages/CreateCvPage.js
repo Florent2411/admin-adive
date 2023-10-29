@@ -1,22 +1,14 @@
-
-import React, { useState, useEffect } from 'react';
-import { Button } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { pdfjs } from "react-pdf";
 import CVForm from '../components/CVForm';
 import CVPreview from '../components/CVPreview';
-import CVExport from '../components/CVExport';
 
-
-import { JsonForms } from "@jsonforms/react";
-import { Document, Page, pdfjs } from "react-pdf";
-
-import schema from "../json-schema/schema.json";
-import uischema from "../json-schema//uischema.json";
 import initial from "../json-schema//initial.json";
-import { materialCells, materialRenderers } from "@jsonforms/material-renderers";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 function CreateCvPage() {
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const [cvData, setCVData] = useState({
         name: '',
@@ -26,8 +18,8 @@ function CreateCvPage() {
         address: '',
         picture: '',
         about: '',
-        skills: '',
-        hobbies: '',
+        skills: [],
+        hobbies: [],
         experiences: '',
         birthDate: '',
         education: '',
@@ -39,7 +31,6 @@ function CreateCvPage() {
         },
     });
 
-    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFormChange = (event) => {
         if (event.target.type === 'file') {
@@ -142,13 +133,13 @@ function CreateCvPage() {
                         {/* <CVExport cvData={cvData} /> */}
                     </div>
 
-                   {/*  <div className="col-lg-12 col-md-12">
+                    {/*  <div className="col-lg-12 col-md-12">
                         <div className="sign_form" style={{ padding: 20, display: "flex", justifyContent: "space-between" }}>
                             <img src="/assets/images/cv-templates/template_1.png" width={"10%"} style={{ height: 150 }} alt />
                             <img src="/assets/images/cv-templates/template_2.png" width={"10%"} style={{ height: 150 }} alt />
                         </div>
                     </div> */}
-                   {/*  <div className="col-lg-12 col-md-12" style={{ marginTop: 10 }}>
+                    {/*  <div className="col-lg-12 col-md-12" style={{ marginTop: 10 }}>
                         <div className="col-lg-6 col-md-6">
                             <div>
                                 <JsonForms
