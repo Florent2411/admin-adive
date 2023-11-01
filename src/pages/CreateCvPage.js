@@ -24,7 +24,7 @@ function CreateCvPage() {
         birthDate: '',
         education: '',
         other: '',
-        langue: '',
+        languages: [],
         colors: {
             primaryColor: '#000000',
             secondaryColor: '#FFFFFF',

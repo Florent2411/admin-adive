@@ -1,12 +1,8 @@
 import React from 'react';
 import MultiInput from './MultiInput';
-
-//TODO: Integrate with cvData
+import MultiLanguageInput from './MultiLanguageInput';
 
 function CVForm({ cvData, onChange }) {
-
-    console.log(cvData)
-
     return (
         <div className="col-lg-4 col-md-12">
             <div className="sign_form" style={{ padding: 20 }}>
@@ -117,19 +113,7 @@ function CVForm({ cvData, onChange }) {
                             placeholder="Etudes & Formations" />
                     </div>
                 </div>
-                <div class="ui search focus mt-15">
-                    <div class="ui form swdh30">
-                        <div class="field">
-                            <textarea
-                                rows="2"
-                                placeholder="Langue..."
-                                name="langue"
-                                value={cvData.langue}
-                                onChange={onChange}
-                            ></textarea>
-                        </div>
-                    </div>
-                </div>
+                <MultiLanguageInput placeholder="Langues" name="languages" items={cvData.languages} onChange={onChange} />
                 <div class="ui search focus mt-15">
                     <div class="ui form swdh30">
                         <div class="field">

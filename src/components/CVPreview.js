@@ -5,6 +5,13 @@ import 'jspdf-autotable';
 import React from 'react';
 import ColorPicker from './ColorPicker';
 
+const profisciencyLevels = {
+    "native": "Maternelle",
+    "fluent": "Courant",
+    "intermediary": "Intermédiaire",
+    "beginner": "Débutant"
+}
+
 function CVPreview({ cvData, selectedFile, onChange }) {
 
     const styles = {
@@ -99,7 +106,9 @@ function CVPreview({ cvData, selectedFile, onChange }) {
                         {
                             cvData.skills.length ?
                                 (cvData.skills.map((skill) => (
-                                    <p key={skill} style={{ color: styles.color }}>{skill}</p>
+                                    <ul>
+                                        <li key={skill} style={{ color: styles.color }}>{skill}</li>
+                                    </ul>
                                 ))) : (
                                     <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
                                 )
@@ -107,11 +116,34 @@ function CVPreview({ cvData, selectedFile, onChange }) {
                     </div>
                     <div className="section">
                         <h3>Langues</h3>
-                        <p style={{ color: styles.color }}>{cvData.langue ? cvData.langue : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                        {
+                            cvData.languages.length ?
+                                (cvData.languages.map(({ language, profisciency }) => (
+                                    <ul >
+                                        <li key={language}
+                                            style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
+                                        >
+                                            <p>{language}</p>
+                                            <p>{"Niveau: "}{profisciencyLevels[profisciency]}</p>
+                                        </li>
+                                    </ul>
+                                ))) : (
+                                    <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
+                                )
+                        }
                     </div>
                     <div className="section">
                         <h3>Centres D'Intérêt</h3>
-                        <p style={{ color: styles.color }}>{cvData.hobbies ? cvData.hobbies : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                        {
+                            cvData.hobbies.length ?
+                                (cvData.hobbies.map((hobby) => (
+                                    <ul>
+                                        <li key={hobby} style={{ color: styles.color }}>{hobby}</li>
+                                    </ul>
+                                ))) : (
+                                    <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
+                                )
+                        }
                     </div>
                 </div>
                 <div className="right-column">
