@@ -1,6 +1,8 @@
 import React from 'react';
 import MultiInput from './MultiInput';
 import MultiLanguageInput from './MultiLanguageInput';
+import ExperienceInput from './ExperienceInput';
+import EducationInput from './EducationInput';
 
 function CVForm({ cvData, onChange }) {
     return (
@@ -93,16 +95,9 @@ function CVForm({ cvData, onChange }) {
                 </div>
                 <MultiInput placeholder="Compétences" name="skills" items={cvData.skills} onChange={onChange} />
                 <MultiInput placeholder="Centres d'intérêts" name="hobbies" items={cvData.hobbies} onChange={onChange} />
-                <div className="ui search focus mt-15">
-                    <div className="ui input swdh95">
-                        <input className="prompt srch_explore"
-                            type="text"
-                            name="experiences"
-                            value={cvData.experiences}
-                            onChange={onChange}
-                            placeholder="Expériences Professionnelles" />
-                    </div>
-                </div>
+                {/* Professional Experiences */}
+                <ExperienceInput name="experiences" items={cvData.experiences} onChange={onChange} />
+                <EducationInput name="education" items={cvData.education} onChange={onChange} />
                 <div className="ui search focus mt-15">
                     <div className="ui input swdh95">
                         <input className="prompt srch_explore"

@@ -7,6 +7,15 @@ import initial from "../json-schema//initial.json";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
+const baseExperience = {
+    title: "Fullstack Javascript Developer",
+    description: "",
+    company: "Google",
+    startDate: new Date(),
+    endDate: null,
+};
+
+
 function CreateCvPage() {
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -20,9 +29,9 @@ function CreateCvPage() {
         about: '',
         skills: [],
         hobbies: [],
-        experiences: '',
+        experiences: [],
         birthDate: '',
-        education: '',
+        education: [],
         other: '',
         languages: [],
         colors: {

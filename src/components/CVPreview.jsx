@@ -160,11 +160,40 @@ function CVPreview({ cvData, selectedFile, onChange }) {
                     <div className="content">
                         <div className="section">
                             <h3>Expériences <span className="text-blue">Professionelles</span></h3>
-                            <p style={{ color: styles.color }}>{cvData.experiences ? cvData.experiences : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                            {
+                                cvData.experiences.length ?
+                                    (cvData.experiences.map((experience) => (
+                                        <ul>
+                                            <li key={experience.title} style={{ marginBottom: "1em" }}>
+                                                <h4>{experience.title}{" - "}{experience.country}</h4>
+                                                <p style={{ margin: 0 }}>{experience.company}</p>
+                                                <p style={{ margin: 0 }}>{`${experience.startDate} - ${experience.endDate ? experience.endDate : "Présent"}`}</p>
+                                                <p>{experience.description}</p>
+                                            </li>
+                                        </ul>
+                                    ))) : (
+                                        <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
+                                    )
+                            }
                         </div>
                         <div className="section">
-                            <h3>Études <span className="text-blue">&amp; Formations</span></h3>
-                            <p style={{ color: styles.color }}>{cvData.education ? cvData.education : "Aucune information enregistrée dans cette section pour le moment"}</p>
+                            <h3>Formations{" & "}<span className="text-blue">Education</span></h3>
+                            {
+                                cvData.education.length ?
+                                    (cvData.education.map((experience) => (
+                                        <ul>
+                                            <li key={experience.title} style={{ marginBottom: "1em" }}>
+                                                <h4>{experience.title}</h4>
+                                                <p style={{ margin: 0 }}>{experience.country}</p>
+                                                <p style={{ margin: 0 }}>{experience.university}</p>
+                                                <p style={{ margin: 0 }}>{`${experience.startDate} - ${experience.endDate ? experience.endDate : "Présent"}`}</p>
+                                                <p>{experience.description}</p>
+                                            </li>
+                                        </ul>
+                                    ))) : (
+                                        <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
+                                    )
+                            }
                         </div>
                         <div className="section">
                             <h3>Autres <span className="text-blue"> Informations</span></h3>

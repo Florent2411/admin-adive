@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import LoginPage from '../pages/Auth/LoginPage';
-import RegisterPage from '../pages/Auth/RegisterPage';
-import ForgotPasswordPage from '../pages/Auth/ForgotPasswordPage';
-import DashboardPage from '../pages/DashboardPage';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import Footer from '../components/Footer';
-import CreateCvPage from '../pages/CreateCvPage';
-import JobsPage from '../pages/JobsPage';
-import JobDetailsPage from '../pages/JobDetailsPage';
-import TrainingsPage from '../pages/TrainingsPage';
-import TrainingDetailsPage from '../pages/TrainingDetailsPage';
+import ForgotPasswordPage from '../pages/Auth/ForgotPasswordPage';
+import LoginPage from '../pages/Auth/LoginPage';
+import RegisterPage from '../pages/Auth/RegisterPage';
 import CertificationCenter from '../pages/CertificationCenter';
 import CertificationTest from '../pages/CertificationTest';
 import CertificationTestResult from '../pages/CertificationTestResult';
+import CreateCvPage from '../pages/CreateCvPage';
+import DashboardPage from '../pages/DashboardPage';
+import JobDetailsPage from '../pages/JobDetailsPage';
+import JobsPage from '../pages/JobsPage';
+import TrainingDetailsPage from '../pages/TrainingDetailsPage';
+import TrainingsPage from '../pages/TrainingsPage';
 
 function Routers() {
 
