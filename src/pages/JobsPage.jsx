@@ -2,18 +2,18 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchJobs, selectJob } from '../redux/actions/jobsActions';
 import Job from '../components/Job';
 import Skelet from '../components/Skeleton';
+import { fetchJobs, selectJob } from '../redux/actions/jobsActions';
 
 const JobsPage = () => {
-    const jobs = useSelector((state) => state.jobs.jobs);
-    const loading = useSelector((state) => state.jobs.loading);
+    const { jobs, loading } = useSelector((state) => state.jobs);
+    const { token } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch(fetchJobs());
+        dispatch(fetchJobs(token));
     }, [dispatch]);
 
     const handleJobClick = (jobId) => {
@@ -41,7 +41,7 @@ const JobsPage = () => {
                         <div className="_14d25">
                             <div className="row">
                                 {!loading && jobs.map((job) => (
-                                    <Job job={job} onClick={() => handleJobClick(job.id)}/>
+                                    <Job job={job} onClick={() => handleJobClick(job.id)} />
                                 ))}
                                 {loading && <Skelet />}
                                 <div className="col-md-12">

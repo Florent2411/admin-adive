@@ -1,5 +1,4 @@
-import axios from 'axios';
-import config from '../../config';
+import { apiClient } from '../../api/client';
 
 export const fetchJobsSuccess = (jobs) => {
   return {
@@ -8,9 +7,13 @@ export const fetchJobsSuccess = (jobs) => {
   };
 };
 
-export const fetchJobs = () => {
+export const fetchJobs = (token) => {
   return (dispatch) => {
-    axios.get(config.apiUrl +"/jobs?populate=*")
+    apiClient.get("/jobs?populate=*", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then((response) => {
         //console.log(response.data.data)
         dispatch(fetchJobsSuccess(response.data.data));

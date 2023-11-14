@@ -1,11 +1,27 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from '../../api/auth';
+import { authenticate } from '../../redux/slices/authSlice';
 
 function LoginPage() {
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
-  const handleLogin = () => {
-    navigate("dashboard")
+  const handleLogin = async () => {
+    try {
+      setLoading(true);
+      const result = await login(email, password);
+      const { user, jwt } = result;
+      dispatch(authenticate({ user, token: jwt }));
+    }
+    catch (error) {
+      console.error(error);
+    }
+    finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -31,6 +47,7 @@ function LoginPage() {
                     id="id_email"
                     required
                     maxLength={25}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="Email" />
                   <i className="uil uil-envelope icon icon2" />
                 </div>
@@ -42,12 +59,14 @@ function LoginPage() {
                     name="password"
                     id="id_password"
                     required
-                    maxLength={10}
+                    onChange={(e) => setPassword(e.target.value)}
                     placeholder="Mot De Passe" />
                   <i className="uil uil-key-skeleton-alt icon icon2" />
                 </div>
               </div>
-              <button className="login-btn" type="submit" onClick={handleLogin}>Se Connecter</button>
+              <button disabled={loading} className="login-btn" type="submit" onClick={handleLogin}>
+                {loading ? "En cours..." : "Connecter"}
+              </button>
               <p className="sgntrm145">Ou <a href="/forgot-password">Mot De Passe Oublié ?</a>.</p>
               <p className="mb-0 mt-30 hvsng145">Pas De Compte ? <a href="/register">Créer Son Compte</a></p>
             </div>

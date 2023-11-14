@@ -9,7 +9,7 @@ export default {
   instagram: "Adive",
   linkedIn: "Adive",
   twitter: "Adive",
-  web : "www.adive.net",
-  apiUrl: 'https://adive-backend-api.warilo.com/api',
+  web: "www.adive.net",
+  apiUrl: process.env.REACT_APP_API_URL,
   availability: "Lun - Ven : 08H - 18H"
 };
