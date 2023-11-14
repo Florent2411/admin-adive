@@ -1,16 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { apiClient } from '../api/client';
-import { logout } from '../redux/slices/authSlice';
+import { logout } from "../redux/actions/authActions";
 
 function Header() {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    dispatch(logout());
-    apiClient.defaults.headers.common.Authorization = "";
+    logout();
     navigate("/");
   }
 

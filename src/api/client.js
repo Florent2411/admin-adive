@@ -18,4 +18,6 @@ const createApiClient = () => {
     return apiClient;
 }
 
-export const apiClient = createApiClient();
+const apiClient = createApiClient();
+
+export default apiClient;

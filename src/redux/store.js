@@ -1,20 +1,14 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import persistReducer from 'redux-persist/es/persistReducer';
 import persistStore from 'redux-persist/es/persistStore';
 import storage from 'redux-persist/lib/storage/session';
 import thunk from 'redux-thunk';
-import { authReducer } from './slices/authSlice';
-import { jobsReducer } from './slices/jobsSlice';
+import rootReducer from "../redux/reducers/rootReducer";
 
 const persistConfig = {
     key: 'root',
     storage,
 };
-
-const rootReducer = combineReducers({
-    auth: authReducer,
-    jobs: jobsReducer,
-})
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
@@ -23,6 +17,7 @@ export const store = configureStore({
     middleware: [
         thunk,
     ],
+    devTools: true
 });
 
 export const persistor = persistStore(store);

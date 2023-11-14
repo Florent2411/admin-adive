@@ -1,27 +1,15 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { login } from '../../api/auth';
-import { authenticate } from '../../redux/slices/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from "../../redux/actions/authActions";
 
 function LoginPage() {
+  const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
-    try {
-      setLoading(true);
-      const result = await login(email, password);
-      const { user, jwt } = result;
-      dispatch(authenticate({ user, token: jwt }));
-    }
-    catch (error) {
-      console.error(error);
-    }
-    finally {
-      setLoading(false);
-    }
+    dispatch(login(email, password))
   }
 
   return (
