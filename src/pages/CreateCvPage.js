@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { pdfjs } from "react-pdf";
 import CVForm from '../components/CVForm';
 import CVPreview from '../components/CVPreview';
 
-import initial from "../json-schema//initial.json";
-
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-const baseExperience = {
-    title: "Fullstack Javascript Developer",
-    description: "",
-    company: "Google",
-    startDate: new Date(),
-    endDate: null,
-};
 
 
 function CreateCvPage() {
@@ -61,75 +52,76 @@ function CreateCvPage() {
         });
     };
 
-    const savedData = localStorage.getItem("user");
-    const initialData = !savedData ? initial : JSON.parse(savedData);
-    const [displayDataAsString, setDisplayDataAsString] = useState("");
-    const [jsonformsData, setJsonformsData] = useState(initialData);
-    const [loading, setLoading] = useState(false);
-    const [visible, setVisible] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
-    const onDismiss = () => setVisible(false);
-    const [error, setError] = useState("");
-    const [pdfBlob, setPdfBlob] = useState(null);
-    const [numPages, setNumPages] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
-    useEffect(() => {
-        localStorage.setItem("user", JSON.stringify(jsonformsData, null, 2));
-        setDisplayDataAsString(JSON.stringify(jsonformsData, null, 2));
-    }, [jsonformsData]);
+    // const savedData = localStorage.getItem("user");
+    // const initialData = !savedData ? initial : JSON.parse(savedData);
+    // const [displayDataAsString, setDisplayDataAsString] = useState("");
+    // const [jsonformsData, setJsonformsData] = useState(initialData);
+    // const [loading, setLoading] = useState(false);
+    // const [visible, setVisible] = useState(false);
+    // const [errorMessage, setErrorMessage] = useState("");
+    // const onDismiss = () => setVisible(false);
+    // const [error, setError] = useState("");
+    // const [pdfBlob, setPdfBlob] = useState(null);
+    // const [numPages, setNumPages] = useState(0);
+    // const [currentPage, setCurrentPage] = useState(1);
 
-    const clearData = () => {
-        setJsonformsData({});
-    };
+    // useEffect(() => {
+    //     localStorage.setItem("user", JSON.stringify(jsonformsData, null, 2));
+    //     setDisplayDataAsString(JSON.stringify(jsonformsData, null, 2));
+    // }, [jsonformsData]);
 
-    const downloadObject = async () => {
-        if (typeof error === "undefined" || error.trim().length === 0) {
-            setVisible(false);
-            setLoading(true);
-            try {
-                const response = await fetch("/api/v1/generate", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: displayDataAsString,
-                });
-                if (!response.ok) {
-                    const text = await response.json();
-                    throw new Error(text.message);
-                }
-                const data = await response.blob();
-                setPdfBlob(data);
-                setLoading(false);
-            } catch (err) {
-                setLoading(false);
-                setVisible(true);
-                setErrorMessage(err.message);
-            }
-        } else {
-            setVisible(true);
-            setErrorMessage(error);
-        }
-    };
+    // const clearData = () => {
+    //     setJsonformsData({});
+    // };
 
-    const onDocumentLoadSuccess = ({ numPages }) => {
-        setNumPages(numPages);
-    };
+    // const downloadObject = async () => {
+    //     if (typeof error === "undefined" || error.trim().length === 0) {
+    //         setVisible(false);
+    //         setLoading(true);
+    //         try {
+    //             const response = await fetch("/api/v1/generate", {
+    //                 method: "POST",
+    //                 headers: { "Content-Type": "application/json" },
+    //                 body: displayDataAsString,
+    //             });
+    //             if (!response.ok) {
+    //                 const text = await response.json();
+    //                 throw new Error(text.message);
+    //             }
+    //             const data = await response.blob();
+    //             setPdfBlob(data);
+    //             setLoading(false);
+    //         } catch (err) {
+    //             setLoading(false);
+    //             setVisible(true);
+    //             setErrorMessage(err.message);
+    //         }
+    //     } else {
+    //         setVisible(true);
+    //         setErrorMessage(error);
+    //     }
+    // };
 
-    const goToPrevPage = () => {
-        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-    };
+    // const onDocumentLoadSuccess = ({ numPages }) => {
+    //     setNumPages(numPages);
+    // };
 
-    const goToNextPage = () => {
-        setCurrentPage((prevPage) => Math.min(prevPage + 1, numPages));
-    };
+    // const goToPrevPage = () => {
+    //     setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+    // };
 
-    const handleDownload = () => {
-        const link = document.createElement("a");
-        if (pdfBlob != null) {
-            link.href = window.URL.createObjectURL(pdfBlob);
-            link.download = `${jsonformsData.personal_info.name} Resume.pdf`;
-            link.click();
-        }
-    };
+    // const goToNextPage = () => {
+    //     setCurrentPage((prevPage) => Math.min(prevPage + 1, numPages));
+    // };
+
+    // const handleDownload = () => {
+    //     const link = document.createElement("a");
+    //     if (pdfBlob != null) {
+    //         link.href = window.URL.createObjectURL(pdfBlob);
+    //         link.download = `${jsonformsData.personal_info.name} Resume.pdf`;
+    //         link.click();
+    //     }
+    // };
 
     return (
         <div className="sa4d25" style={{ marginBottom: 200 }}>

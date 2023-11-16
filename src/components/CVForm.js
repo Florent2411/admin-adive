@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
+import EducationInput from './EducationInput';
+import ExperienceInput from './ExperienceInput';
 import MultiInput from './MultiInput';
 import MultiLanguageInput from './MultiLanguageInput';
-import ExperienceInput from './ExperienceInput';
-import EducationInput from './EducationInput';
 
 function CVForm({ cvData, onChange }) {
     return (
@@ -53,7 +54,7 @@ function CVForm({ cvData, onChange }) {
                 <div className="ui search focus mt-15">
                     <div className="ui input swdh95">
                         <input className="prompt srch_explore"
-                            type="number"
+                            type="text"
                             name="phone"
                             value={cvData.phone}
                             onChange={onChange}
@@ -80,9 +81,9 @@ function CVForm({ cvData, onChange }) {
                             placeholder="Photo" />
                     </div>
                 </div>
-                <div class="ui search focus mt-15">
-                    <div class="ui form swdh30">
-                        <div class="field">
+                <div className="ui search focus mt-15">
+                    <div className="ui form swdh30">
+                        <div className="field">
                             <textarea
                                 rows="2"
                                 placeholder="A Propos De Moi..."
@@ -109,9 +110,9 @@ function CVForm({ cvData, onChange }) {
                     </div>
                 </div>
                 <MultiLanguageInput placeholder="Langues" name="languages" items={cvData.languages} onChange={onChange} />
-                <div class="ui search focus mt-15">
-                    <div class="ui form swdh30">
-                        <div class="field">
+                <div className="ui search focus mt-15">
+                    <div className="ui form swdh30">
+                        <div className="field">
                             <textarea
                                 rows="2"
                                 placeholder="Autres Informations..."

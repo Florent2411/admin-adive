@@ -10,7 +10,7 @@ export default function ExperienceInput({ name, items, onChange }) {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
-    const isFine = title && description && company && startDate;
+    const isValid = title && description && company && startDate;
 
     const createCustomEvent = (value) => {
         return {
@@ -56,7 +56,7 @@ export default function ExperienceInput({ name, items, onChange }) {
             </div>
 
             <button
-                disabled={!isFine}
+                disabled={!isValid}
                 onClick={() => {
                     const value = { title, description, company, startDate, endDate, country };
                     const event = createCustomEvent([...items, value]);

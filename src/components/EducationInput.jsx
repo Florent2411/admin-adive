@@ -9,7 +9,7 @@ export default function EducationInput({ name, items, onChange }) {
     const [startDate, setStartDate] = useState(null);
     const [endDate, setEndDate] = useState(null);
 
-    const isFine = title && university && startDate;
+    const isValid = title && university && startDate;
 
     const createCustomEvent = (value) => {
         return {
@@ -52,7 +52,7 @@ export default function EducationInput({ name, items, onChange }) {
             </div>
 
             <button
-                disabled={!isFine}
+                disabled={!isValid}
                 onClick={() => {
                     const value = { title, company: university, startDate, endDate, country };
                     const event = createCustomEvent([...items, value]);

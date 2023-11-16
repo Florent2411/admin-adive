@@ -1,9 +1,24 @@
-import axios from 'axios';
-import config from '../../config';
+import apiClient from "../../api/client";
+import { requestEnd, requestStart } from "./authActions";
 
-const handleRequestError = (error) => {
-  console.error(error);
-}
+//  name: '',
+//         occupation: '',
+//         email: '',
+//         phone: '',
+//         address: '',
+//         picture: '',
+//         about: '',
+//         skills: [],
+//         hobbies: [],
+//         experiences: [],
+//         birthDate: '',
+//         education: [],
+//         other: '',
+//         languages: [],
+//         colors: {
+//             primaryColor: '#000000',
+//             secondaryColor: '#FFFFFF',
+//         },
 
 export const fetchCvsSuccess = (cvs) => {
   return {
@@ -12,23 +27,27 @@ export const fetchCvsSuccess = (cvs) => {
   };
 };
 
-export const createCvsSuccess = (input) => {
-  return (dispatch) => {
+// export const createCvsSuccess = (input) => {
+//   return (dispatch) => {
 
-    axios.post(config.apiUrl + "/")
+//     axios.post(config.apiUrl + "/")
 
-  }
-}
+//   }
+// }
 
-export const fetchBlogs = () => {
-  return (dispatch) => {
-    axios.get(config.apiUrl + "/blogs?populate=*")
-      .then((response) => {
-        //console.log(response.data.data)
-        dispatch(fetchBlogsSuccess(response.data.data));
-      })
-      .catch((error) => {
-        handleRequestError(error);
-      });
+export function createCV({ name, occupation, email, phone, address, picture, about, skills, hobbies, experiences, birthDate, education, other, languages, colors, user }) {
+  return async (dispatch) => {
+    try {
+      dispatch(requestStart());
+      const response = await apiClient.post("/auth/local", { identifier, password });
+      const { jwt, user } = response.data;
+      // dispatch(loginSuccess(jwt, user));
+    }
+    catch (error) {
+      console.error(error);
+    }
+    finally {
+      dispatch(requestEnd());
+    }
   };
-};
+}
