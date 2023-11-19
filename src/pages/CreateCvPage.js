@@ -182,7 +182,7 @@ function CreateCvPage() {
                     <div className="container-fluid mt-15">
                         <div className="row">
                             <CVForm cvData={cvData} onChange={handleFormChange} />
-                            <CVPreview cvData={cvData} selectedFile={selectedFile} onChange={handleColorChange} />
+                            <CVPreview cvData={cvData} selectedFile={selectedFile} onChange={handleColorChange} canSave />
                         </div>
                     </div>
 

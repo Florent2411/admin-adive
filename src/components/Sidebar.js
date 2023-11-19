@@ -50,7 +50,7 @@ function Sidebar() {
               </a>
             </li>
             <li className="menu--item">
-              <a href="#" className="menu--link" title='Mes CVs'>
+              <a href="/my-cvs" className="menu--link" title='Mes CVs'>
                 <i className="uil uil-plus-circle menu--icon" />
                 <span className="menu--label">Mes CVs</span>
               </a>

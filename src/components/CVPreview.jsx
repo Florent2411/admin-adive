@@ -3,16 +3,61 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import React from 'react';
+import { profisciencyLevels } from "../constants";
 import ColorPicker from './ColorPicker';
+import { useDispatch, useSelector } from 'react-redux';
+import { mockCV } from "../mock";
+import { createCV } from "../redux/actions/cvsActions";
 
-const profisciencyLevels = {
-    "native": "Maternelle",
-    "fluent": "Courant",
-    "intermediary": "Intermédiaire",
-    "beginner": "Débutant"
+function ExportCVButton({ exportCVToImage, exportCVToPDF }) {
+
+    return (
+        <li className="ui simple dropdown item" >
+            <button
+                className="login-btn"
+                style={{ padding: "0px 20px", marginBottom: 20 }}
+            >
+                Exportation Du CV
+            </button>
+            <div className="menu dropdown_category5">
+                {/* <a href="#"
+                    onClick={exportCVToImage}
+                    className="item channel_item"
+                >
+                    En Image
+                </a> */}
+                <a href="#"
+                    onClick={exportCVToPDF}
+                    className="item channel_item"
+                >
+                    En PDF
+                </a>
+            </div>
+        </li>
+    )
 }
 
-function CVPreview({ cvData, selectedFile, onChange }) {
+function SaveCVButton({ cvData }) {
+    const dispatch = useDispatch();
+    const { user, token } = useSelector((state) => state.auth);
+    const { loading } = useSelector((state) => state.cvs);
+
+    const handleSave = () => {
+        dispatch(createCV({ ...cvData, token, ownerId: user.id }));
+    }
+
+    return (
+        <button
+            onClick={handleSave}
+            className="login-btn"
+            style={{ flex: 1, padding: "0px 20px", marginBottom: 20 }}
+        >
+            {loading ? "En cours..." : "Sauvegarder le CV"}
+        </button>
+    )
+}
+
+function CVPreview({ cvData, selectedFile, onChange, canSave }) {
 
     const styles = {
         backgroundColor: cvData.colors.primaryColor,
@@ -55,39 +100,26 @@ function CVPreview({ cvData, selectedFile, onChange }) {
     return (
         <div className="col-lg-8 col-md-12" style={{ backgroundColor: "#333" }}>
             <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <ColorPicker
-                    colorType="primaryColor"
-                    color={cvData.colors.primaryColor}
-                    onChange={onChange}
-                />
-                <ColorPicker
-                    colorType="secondaryColor"
-                    color={cvData.colors.secondaryColor}
-                    onChange={onChange}
-                />
+                <div style={{ display: "flex", alignItems: "center", gap: "1em" }}>
+                    <ColorPicker
+                        colorType="primaryColor"
+                        color={cvData.colors.primaryColor}
+                        onChange={onChange}
+                    />
+                    <ColorPicker
+                        colorType="secondaryColor"
+                        color={cvData.colors.secondaryColor}
+                        onChange={onChange}
+                    />
+                </div>
 
-                <li className="ui simple dropdown item" style={{ float: 'right' }}>
-                    <button
-                        className="login-btn"
-                        style={{ padding: "0px 20px", marginBottom: 20 }}
-                    >
-                        Exportation Du CV
-                    </button>
-                    <div className="menu dropdown_category5">
-                        <a href="#"
-                            onClick={exportCVToImage}
-                            className="item channel_item"
-                        >
-                            En Image
-                        </a>
-                        <a href="#"
-                            onClick={exportCVToPDF}
-                            className="item channel_item"
-                        >
-                            En PDF
-                        </a>
-                    </div>
-                </li>
+                <div style={{ display: "flex", alignItems: "center", gap: "1em" }}>
+                    <ExportCVButton exportCVToImage={exportCVToImage} exportCVToPDF={exportCVToPDF} />
+                    {
+                        canSave && (<SaveCVButton />)
+                    }
+                </div>
+
             </div>
             <div className="cv-container" id='cv-container' style={styles}>
                 <div className="left-column">
@@ -106,7 +138,7 @@ function CVPreview({ cvData, selectedFile, onChange }) {
                         {
                             cvData.skills.length ?
                                 (cvData.skills.map((skill) => (
-                                    <ul>
+                                    <ul style={{  }}>
                                         <li key={skill} style={{ color: styles.color }}>{skill}</li>
                                     </ul>
                                 ))) : (

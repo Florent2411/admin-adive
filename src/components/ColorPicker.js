@@ -9,7 +9,7 @@ const ColorPicker = ({ colorType, color, onChange }) => {
     return (
         <div>
             {colorType === 'primaryColor' ? 'Couleur De Fond' : 'Couleur Du Texte'}
-            <input type="color" value={color} onChange={handleColorChange} />
+            <input style={{ marginLeft: "1em" }} type="color" value={color} onChange={handleColorChange} />
         </div>
     );
 };

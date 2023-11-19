@@ -11,6 +11,7 @@ import CertificationCenter from '../pages/CertificationCenter';
 import CertificationTest from '../pages/CertificationTest';
 import CertificationTestResult from '../pages/CertificationTestResult';
 import CreateCvPage from '../pages/CreateCvPage';
+import MyCVsPage from '../pages/MyCVsPage';
 import DashboardPage from '../pages/DashboardPage';
 import JobDetailsPage from '../pages/JobDetailsPage';
 import JobsPage from '../pages/JobsPage';
@@ -39,6 +40,7 @@ function Routers() {
               <Routes>
                 <Route exact path="/dashboard" element={<DashboardPage />} />
                 <Route exact path="/create-cv" element={<CreateCvPage />} />
+                <Route exact path="/my-cvs" element={<MyCVsPage />} />
                 <Route exact path="/jobs" element={<JobsPage />} />
                 <Route exact path="/job-details/:id" element={<JobDetailsPage />} />
                 <Route exact path="/trainings" element={<TrainingsPage />} />
