@@ -1,4 +1,4 @@
-import apiClient from "../../api/client";
+import Toaster from "../../libs/notifications/toasts";
 
 export function requestStart() {
   return {
@@ -12,9 +12,28 @@ export function requestEnd() {
   };
 }
 
+export function requestError(message) {
+  Toaster.error(message);
+  return {
+    type: 'REQUEST_ERROR',
+    payload: {
+      message
+    }
+  }
+}
+
 export function loginSuccess(token, user) {
   return {
     type: 'LOGIN_SUCCESS',
+    payload: {
+      token, user
+    }
+  };
+}
+
+export function registerSuccess(token, user) {
+  return {
+    type: 'REGISTER_SUCCESS',
     payload: {
       token, user
     }
@@ -27,21 +46,26 @@ export function logoutSuccess() {
   };
 }
 
-export function login(identifier, password) {
-  return async (dispatch) => {
-    try {
-      dispatch(requestStart());
-      const response = await apiClient.post("/auth/local", { identifier, password });
-      const { jwt, user } = response.data;
-      dispatch(loginSuccess(jwt, user));
+export function loginRequest(identifier, password) {
+  return {
+    type: 'LOGIN_REQUESTED',
+    payload: {
+      identifier,
+      password,
     }
-    catch (error) {
-      console.error(error);
+  }
+}
+
+export function registerRequest({ username, email, password }) {
+  return {
+    type: 'REGISTER_REQUESTED',
+    payload: {
+      username,
+      email,
+      password,
     }
-    finally {
-      dispatch(requestEnd());
-    }
-  };
+  }
+
 }
 
 export async function logout() {
