@@ -6,8 +6,8 @@ import { loginSuccess, registerSuccess, requestEnd, requestError, requestStart }
 function* login(action) {
     try {
         yield put(requestStart())
-        const { token, user } = yield call(API.auth.login, action.payload);
-        yield put(loginSuccess(token, user));
+        const { jwt, user } = yield call(API.auth.login, action.payload);
+        yield put(loginSuccess(jwt, user));
     }
 
     catch (error) {
@@ -26,10 +26,8 @@ function* login(action) {
 function* register(action) {
     try {
         yield put(requestStart())
-        const response = yield call(API.auth.register, action.payload);
-        console.log(response);
-        const { token, user } = response;
-        yield put(registerSuccess(token, user));
+        const { jwt, user } = yield call(API.auth.register, action.payload);
+        yield put(registerSuccess(jwt, user));
     }
 
     catch (error) {

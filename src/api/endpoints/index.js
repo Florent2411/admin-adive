@@ -1,9 +1,10 @@
-import { login, register } from "./auth";
+import { login, register, setupAccount } from "./auth";
 
 const API = {
     auth: {
         login,
         register,
+        setupAccount,
     }
 }
 

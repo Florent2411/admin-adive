@@ -1,6 +1,8 @@
 import { Form, FormPartial } from "@n7studio/react-original-form";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Step, Stepper } from "react-form-stepper";
+import { useSelector } from "react-redux";
+import API from "../../api/endpoints";
 import { AuthInput, DateInput, DropdownInput, GenderSelectInput, TextAreaInput } from "../../components";
 
 const accountTypeOptions = [
@@ -66,6 +68,7 @@ export default function SetupAccountPage() {
     const maxSteps = 3;
     const hasPrevious = currentStep !== 0;
     const hasNext = currentStep !== maxSteps - 1;
+    const { token } = useSelector((state) => state.auth);
 
     const previous = () => {
         (hasPrevious) && setCurrentStep(currentStep - 1);
@@ -74,6 +77,10 @@ export default function SetupAccountPage() {
     const next = () => {
         (hasNext) && setCurrentStep(currentStep + 1);
     }
+
+    useEffect(() => {
+        API.auth.setupAccount({ firstName: "BADINI", lastName: "Rodrigue", token });
+    }, [token]);
 
     return (
         <div className="sign_in_up_bg">

@@ -17,8 +17,13 @@ export async function setupAccount({
     lastName,
     phone,
     skillsDescription,
+    token
 }) {
-    const response = await apiClient.post("/accounts/setup-account", { country, companyType, firstName });
+    const response = await apiClient.post("/accounts/setup-account", { country, companyType, firstName }, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
     console.log(response);
 }
 
