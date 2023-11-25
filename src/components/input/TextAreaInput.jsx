@@ -1,4 +1,4 @@
-export default function TextAreaInput({ name, onChange, value, placeholder, label }) {
+export default function TextAreaInput({ name, onChange, value, placeholder, label, error }) {
     return (
         <div class="ui search focus mt-15">
             <label style={{ float: "left" }}>{label}</label>
@@ -13,6 +13,11 @@ export default function TextAreaInput({ name, onChange, value, placeholder, labe
                     ></textarea>
                 </div>
             </div>
+            {
+                error && (
+                    <small>{error.message}</small>
+                )
+            }
         </div>
     )
 }

@@ -40,6 +40,15 @@ export function registerSuccess(token, user) {
   };
 }
 
+export function setupAccountSuccess(user) {
+  return {
+    type: 'SETUP_ACCOUNT_SUCCESS',
+    payload: {
+      user
+    }
+  };
+}
+
 export function logoutSuccess() {
   return {
     type: 'LOGOUT_SUCCESS',
@@ -65,10 +74,16 @@ export function registerRequest({ username, email, password }) {
       password,
     }
   }
-
 }
 
-export async function logout() {
+export function setupAccountRequest(input) {
+  return {
+    type: 'SETUP_ACCOUNT_REQUESTED',
+    payload: input
+  }
+}
+
+export function logout() {
   return (dispatch) => {
     dispatch(logoutSuccess());
   }

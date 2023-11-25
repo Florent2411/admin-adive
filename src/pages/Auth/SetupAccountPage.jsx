@@ -1,9 +1,37 @@
 import { Form, FormPartial } from "@n7studio/react-original-form";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Step, Stepper } from "react-form-stepper";
-import { useSelector } from "react-redux";
-import API from "../../api/endpoints";
+import { useDispatch, useSelector } from "react-redux";
+import { bool, date, object, string } from "yup";
 import { AuthInput, DateInput, DropdownInput, GenderSelectInput, TextAreaInput } from "../../components";
+import { setupAccountRequest } from "../../redux/actions/authActions";
+
+const informationStepValidationSchema = object({
+    firstName: string().required("Veuillez saisir votre nom"),
+    lastName: string().required("Veuillez saisir votre prénom"),
+    birthdate: date().required("Veuillez choisir votre date de naissance"),
+    accountType: string().required("Veuillez choisir votre type de compte"),
+});
+
+const personalStepValidationSchema = object({
+    skillsDescription: string().required("Veuillez décrire vos compétences"),
+    gender: string().required("Veuillez choisir votre sexe"),
+    country: string().required("Veuillez choisir votre pays"),
+    phone: string().required("Veuillez saisir votre numéro de téléphone"),
+});
+
+const agreementStepValidationSchema = object({
+    isDeliveryMember: bool(),
+    isNewsletterMember: bool(),
+    isProspectionMember: bool(),
+});
+
+
+const validationSchemas = [
+    informationStepValidationSchema,
+    personalStepValidationSchema,
+    agreementStepValidationSchema
+]
 
 const accountTypeOptions = [
     {
@@ -69,18 +97,26 @@ export default function SetupAccountPage() {
     const hasPrevious = currentStep !== 0;
     const hasNext = currentStep !== maxSteps - 1;
     const { token } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
 
     const previous = () => {
         (hasPrevious) && setCurrentStep(currentStep - 1);
     }
 
-    const next = () => {
-        (hasNext) && setCurrentStep(currentStep + 1);
+    const handleSubmit = (values) => {
+        const payload = { token, ...values };
+        dispatch(setupAccountRequest(payload));
     }
 
-    useEffect(() => {
-        API.auth.setupAccount({ firstName: "BADINI", lastName: "Rodrigue", token });
-    }, [token]);
+    const next = (values) => {
+        if (hasNext) {
+            setCurrentStep(currentStep + 1);
+            return;
+        }
+
+        handleSubmit(values);
+    }
+
 
     return (
         <div className="sign_in_up_bg">
@@ -98,15 +134,20 @@ export default function SetupAccountPage() {
                                 <div className="tab-pane fade show active" id="instructor-signup-tab" role="tabpanel" aria-labelledby="instructor-tab">
                                     <p>Enregistrez-Vous pour profiter de plusieurs services</p>
                                     <Form
-                                        onSubmit={(values) => {
-                                            console.log(values);
+                                        defaultValues={{
+                                            gender: "male",
+                                            accountType: "particular",
                                         }}
+                                        validationSchema={validationSchemas[currentStep]}
+                                        onSubmit={(values) => {
+                                            next(values);
+                                        }}
+                                        onInvalid={(error) => console.error(error)}
                                     >
                                         <Stepper activeStep={currentStep}>
                                             <Step onClick={() => setCurrentStep(0)} label="1" />
                                             <Step onClick={() => setCurrentStep(1)} label="2" />
                                             <Step onClick={() => setCurrentStep(2)} label="3" />
-                                            <Step onClick={() => setCurrentStep(3)} label="4" />
                                         </Stepper>
                                         {currentStep === 0 && (<InformationsStep />)}
                                         {currentStep === 1 && (<PersonalStep />)}
@@ -114,7 +155,7 @@ export default function SetupAccountPage() {
                                         <div style={{ display: "flex", gap: "1em" }}>
                                             {hasPrevious && (<button className="login-btn" type="button" onClick={previous}>Précédent</button>)}
                                             {
-                                                hasNext ? (<button className="login-btn" type="button" onClick={next}>Suivant</button>) :
+                                                hasNext ? (<button className="login-btn" type="submit">Suivant</button>) :
                                                     (<button className="login-btn" type="submit">Confirmer</button>)
                                             }
                                         </div>

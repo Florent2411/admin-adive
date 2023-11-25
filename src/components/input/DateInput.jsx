@@ -1,4 +1,4 @@
-export default function DateInput({ name, onChange, value, placeholder, label }) {
+export default function DateInput({ name, onChange, value, placeholder, label, error }) {
     return (
         <div className="ui search focus mt-15">
             <label style={{ float: "left" }}>{label}</label>
@@ -12,6 +12,11 @@ export default function DateInput({ name, onChange, value, placeholder, label })
                     placeholder={placeholder} />
                 <i className="uil uil-calendar-alt icon icon2" />
             </div>
+            {
+                error && (
+                    <small>{error.message}</small>
+                )
+            }
         </div>
     )
 }

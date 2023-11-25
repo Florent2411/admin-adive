@@ -3,11 +3,10 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import React from 'react';
-import { profisciencyLevels } from "../constants";
-import ColorPicker from './ColorPicker';
 import { useDispatch, useSelector } from 'react-redux';
-import { mockCV } from "../mock";
+import { profisciencyLevels } from "../constants";
 import { createCV } from "../redux/actions/cvsActions";
+import ColorPicker from './ColorPicker';
 
 function ExportCVButton({ exportCVToImage, exportCVToPDF }) {
 
@@ -135,47 +134,47 @@ function CVPreview({ cvData, selectedFile, onChange, canSave }) {
                     </div>
                     <div className="section">
                         <h3>Compétences</h3>
-                        {
-                            cvData.skills.length ?
-                                (cvData.skills.map((skill) => (
-                                    <ul style={{  }}>
-                                        <li key={skill} style={{ color: styles.color }}>{skill}</li>
-                                    </ul>
-                                ))) : (
-                                    <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
-                                )
-                        }
+                        <ul >
+                            {
+                                cvData.skills.length ?
+                                    (cvData.skills.map((skill, index) => (
+                                        <li key={skill} style={{ color: styles.color, display: "inline" }}>{skill}{index === cvData.skills.length - 1 ? "" : ", "}</li>
+                                    ))) : (
+                                        <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
+                                    )
+                            }
+                        </ul>
                     </div>
                     <div className="section">
                         <h3>Langues</h3>
-                        {
-                            cvData.languages.length ?
-                                (cvData.languages.map(({ language, profisciency }) => (
-                                    <ul >
+                        <ul >
+                            {
+                                cvData.languages.length ?
+                                    (cvData.languages.map(({ language, profisciency }) => (
                                         <li key={language}
                                             style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}
                                         >
-                                            <p>{language}</p>
-                                            <p>{"Niveau: "}{profisciencyLevels[profisciency]}</p>
+                                            <p style={{ margin: 0 }}>{language}</p>
+                                            <p style={{ fontStyle: "italic" }}>{"Niveau: "}{profisciencyLevels[profisciency]}</p>
                                         </li>
-                                    </ul>
-                                ))) : (
-                                    <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
-                                )
-                        }
+                                    ))) : (
+                                        <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
+                                    )
+                            }
+                        </ul>
                     </div>
                     <div className="section">
                         <h3>Centres D'Intérêt</h3>
-                        {
-                            cvData.hobbies.length ?
-                                (cvData.hobbies.map((hobby) => (
-                                    <ul>
-                                        <li key={hobby} style={{ color: styles.color }}>{hobby}</li>
-                                    </ul>
-                                ))) : (
-                                    <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
-                                )
-                        }
+                        <ul>
+                            {
+                                cvData.hobbies.length ?
+                                    (cvData.hobbies.map((hobby, index) => (
+                                        <li key={hobby} style={{ color: styles.color, display: "inline" }}>{hobby}{index === cvData.hobbies.length - 1 ? "" : ", "}</li>
+                                    ))) : (
+                                        <p style={{ color: styles.color }}>Aucune information enregistrée dans cette section pour le moment</p>
+                                    )
+                            }
+                        </ul>
                     </div>
                 </div>
                 <div className="right-column">

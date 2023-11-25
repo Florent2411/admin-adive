@@ -15,7 +15,6 @@ function Routers() {
       {
         user && (
           <PrivateRoutes />
-
         )
       }
     </BrowserRouter >

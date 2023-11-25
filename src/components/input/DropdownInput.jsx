@@ -1,4 +1,4 @@
-export default function DropdownInput({ label, name, onChange, value, options, placeholder }) {
+export default function DropdownInput({ label, name, onChange, value, options, placeholder, error }) {
     return (
         <div className="mt-15">
             <label style={{ float: "left" }}>{label}</label>
@@ -14,6 +14,11 @@ export default function DropdownInput({ label, name, onChange, value, options, p
                 }
                 !value && (<option>{placeholder}</option>)
             </select>
+            {
+                error && (
+                    <small>{error.message}</small>
+                )
+            }
         </div>
     )
 }

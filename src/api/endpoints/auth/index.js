@@ -6,25 +6,15 @@ export async function login(identifier, password) {
 }
 
 export async function setupAccount({
-    isDeliveryMember,
-    isNewsletterMember,
-    isProspectionMember,
-    birthdate,
-    companyType,
-    country,
-    firstName,
-    gender,
-    lastName,
-    phone,
-    skillsDescription,
-    token
+    token,
+    ...rest
 }) {
-    const response = await apiClient.post("/accounts/setup-account", { country, companyType, firstName }, {
+    const response = await apiClient.post("/accounts/setup-account", { ...rest }, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     });
-    console.log(response);
+    return response.data;
 }
 
 export async function register({ username, email, password }) {

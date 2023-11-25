@@ -16,18 +16,19 @@ function Layout({ children }) {
     <>
       <Header />
       <Sidebar />
-      <div className="wrapper">
-        <>{children}</>
-        <Footer />
+      <div style={{ height: "100vh" }} className="wrapper">
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", height: "100%" }}>
+          <div>{children}</div>
+          <Footer />
+        </div>
       </div>
     </>
   )
 }
 
 export default function PrivateRoutes() {
-  const user = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const isAccountSetup = user.isAccountSetup;
-
 
   return (
     <>
