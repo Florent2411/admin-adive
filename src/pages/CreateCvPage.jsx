@@ -5,8 +5,6 @@ import CVPreview from '../components/CVPreview';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-
-
 function CreateCvPage() {
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -21,7 +19,7 @@ function CreateCvPage() {
         skills: [],
         hobbies: [],
         experiences: [],
-        birthDate: '',
+        birthDate: new Date().toISOString(),
         education: [],
         other: '',
         languages: [],

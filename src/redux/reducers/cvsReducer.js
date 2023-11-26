@@ -26,6 +26,11 @@ export const cvsReducer = (state = initialState, action) => {
         ...state,
         cvs: [...state.cvs, action.payload],
       };
+    case 'DELETE_CV_SUCCESS':
+      return {
+        ...state,
+        cvs: state.cvs.filter((cv) => cv.id !== action.payload),
+      };
     default:
       return state;
   }

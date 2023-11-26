@@ -6,6 +6,7 @@ import createSagaMiddleware from "redux-saga";
 import thunk from 'redux-thunk';
 import rootReducer from "../redux/reducers/rootReducer";
 import authSaga from "./sagas/auth";
+import cvsSaga from './sagas/cvs';
 
 const persistConfig = {
     key: 'root',
@@ -26,6 +27,7 @@ export const store = configureStore({
 });
 
 sagaMiddleware.run(authSaga);
+sagaMiddleware.run(cvsSaga);
 
 export const persistor = persistStore(store);
 

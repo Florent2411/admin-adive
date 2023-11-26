@@ -5,7 +5,8 @@ import 'jspdf-autotable';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { profisciencyLevels } from "../constants";
-import { createCV } from "../redux/actions/cvsActions";
+import Toaster from '../libs/notifications/toasts';
+import { createCVRequest } from '../redux/actions/cvsActions';
 import ColorPicker from './ColorPicker';
 
 function ExportCVButton({ exportCVToImage, exportCVToPDF }) {
@@ -38,11 +39,15 @@ function ExportCVButton({ exportCVToImage, exportCVToPDF }) {
 
 function SaveCVButton({ cvData }) {
     const dispatch = useDispatch();
-    const { user, token } = useSelector((state) => state.auth);
+    const { token } = useSelector((state) => state.auth);
     const { loading } = useSelector((state) => state.cvs);
 
     const handleSave = () => {
-        dispatch(createCV({ ...cvData, token, ownerId: user.id }));
+        if (!cvData.email) {
+            Toaster.error("Veuillez saisir au moins votre adresse email");
+            return;
+        }
+        dispatch(createCVRequest({ ...cvData, token }));
     }
 
     return (
@@ -115,7 +120,7 @@ function CVPreview({ cvData, selectedFile, onChange, canSave }) {
                 <div style={{ display: "flex", alignItems: "center", gap: "1em" }}>
                     <ExportCVButton exportCVToImage={exportCVToImage} exportCVToPDF={exportCVToPDF} />
                     {
-                        canSave && (<SaveCVButton />)
+                        canSave && (<SaveCVButton cvData={cvData} />)
                     }
                 </div>
 
