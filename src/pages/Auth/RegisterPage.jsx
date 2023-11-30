@@ -2,7 +2,7 @@ import { Form } from "@n7studio/react-original-form";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { object, ref, string } from "yup";
-import { AuthInput } from "../../components";
+import { AuthInput, LoadingButton } from "../../components";
 import { registerRequest } from "../../redux/actions/authActions";
 
 const registerSchema = object({
@@ -42,12 +42,10 @@ function RegisterPage() {
                                     >
                                         <AuthInput label="Nom d'utilisateur" name="username" placeholder="Nom d'utilisateur" icon="user" />
                                         <AuthInput label="Adresse email" name="email" placeholder="Email" icon="envelope" />
-                                        <AuthInput label="Mot de passe" name="password" placeholder="Mot de passe" icon="key-skeleton-alt" />
-                                        <AuthInput label="Confirmation de mot de passe" name="password2" placeholder="Confirmation de votre mot de passe" icon="key-skeleton-alt" />
+                                        <AuthInput label="Mot de passe" type="password" name="password" placeholder="Mot de passe" icon="key-skeleton-alt" />
+                                        <AuthInput label="Confirmation de mot de passe" type="password" name="password2" placeholder="Confirmation de votre mot de passe" icon="key-skeleton-alt" />
                                         <div style={{ display: "flex", gap: "1em" }}>
-                                            <button disabled={loading} className="login-btn" type="submit">{
-                                                loading ? "En cours..." : "Créer un compte"
-                                            }</button>
+                                            <LoadingButton title="Créer un compte" loading={loading} type="submit" />
                                         </div>
                                     </Form>
                                 </div>

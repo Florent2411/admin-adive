@@ -3,19 +3,42 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import API from "../../../api/endpoints";
 import { loginSuccess, registerSuccess, requestEnd, requestError, requestStart, setupAccountSuccess } from "../../actions/authActions";
 
-function* login(action) {
+const DEFAULT_ERROR_MESSAGE = "Une erreur s'est produite";
+
+function* handleAxiosError(error) {
+    let errorMessage = DEFAULT_ERROR_MESSAGE;
+    const responseError = error.response.data.error;
+
+    if (!responseError) {
+        yield put(requestError(errorMessage));
+        return;
+    }
+
+    const { name } = responseError;
+
+    if (name === "ValidationError") {
+        errorMessage = "Vos informations sont incorrects";
+        yield put(requestError(errorMessage));
+    }
+
+}
+
+function* handleError(error) {
+    if (error instanceof AxiosError) {
+        yield handleAxiosError(error);
+    }
+    console.error(error);
+}
+
+function* authenticate(action, authFunction, successAction) {
     try {
         yield put(requestStart())
-        const { jwt, user } = yield call(API.auth.login, action.payload);
-        yield put(loginSuccess(jwt, user));
+        const { jwt, user } = yield call(authFunction, action.payload);
+        yield put(successAction(jwt, user));
     }
 
     catch (error) {
-        if (error instanceof AxiosError) {
-            const { message } = error.response.data.error
-            yield put(requestError(message));
-        }
-        console.error(error);
+        yield handleError(error);
     }
 
     finally {
@@ -23,24 +46,12 @@ function* login(action) {
     }
 }
 
+function* login(action) {
+    yield authenticate(action, API.auth.login, loginSuccess);
+}
+
 function* register(action) {
-    try {
-        yield put(requestStart())
-        const { jwt, user } = yield call(API.auth.register, action.payload);
-        yield put(registerSuccess(jwt, user));
-    }
-
-    catch (error) {
-        if (error instanceof AxiosError) {
-            const { message } = error.response.data.error
-            yield put(requestError(message));
-        }
-        console.error(error);
-    }
-
-    finally {
-        yield put(requestEnd());
-    }
+    yield authenticate(action, API.auth.register, registerSuccess);
 }
 
 function* setupAccount(action) {
@@ -51,11 +62,7 @@ function* setupAccount(action) {
     }
 
     catch (error) {
-        if (error instanceof AxiosError) {
-            const { message } = error.response.data.error
-            yield put(requestError(message));
-        }
-        console.error(error);
+        yield handleError(error);
     }
 
     finally {

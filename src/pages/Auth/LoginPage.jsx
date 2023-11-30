@@ -2,7 +2,7 @@ import { Form } from '@n7studio/react-original-form';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { object, string } from "yup";
-import { AuthInput } from '../../components';
+import { AuthInput, LoadingButton } from '../../components';
 import { loginRequest } from "../../redux/actions/authActions";
 
 const loginSchema = object({
@@ -37,10 +37,8 @@ function LoginPage() {
                 }}
               >
                 <AuthInput name="email" placeholder="Adresse Email" icon="envelope" />
-                <AuthInput name="password" placeholder="Mot de passe" icon="key-skeleton-alt" />
-                <button disabled={loading} className="login-btn" type="submit">
-                  {loading ? "En cours..." : "Connecter"}
-                </button>
+                <AuthInput name="password" type="password" placeholder="Mot de passe" icon="key-skeleton-alt" />
+                <LoadingButton loading={loading} title="Se Connecter" type="submit" />
               </Form>
 
               <p className="sgntrm145">Ou <a href="/forgot-password">Mot De Passe Oublié ?</a>.</p>

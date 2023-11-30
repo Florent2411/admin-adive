@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Step, Stepper } from "react-form-stepper";
 import { useDispatch, useSelector } from "react-redux";
 import { bool, date, object, string } from "yup";
-import { AuthInput, DateInput, DropdownInput, GenderSelectInput, TextAreaInput } from "../../components";
+import { AuthInput, DateInput, DropdownInput, GenderSelectInput, LoadingButton, TextAreaInput } from "../../components";
 import { setupAccountRequest } from "../../redux/actions/authActions";
 
 const informationStepValidationSchema = object({
@@ -25,7 +25,6 @@ const agreementStepValidationSchema = object({
     isNewsletterMember: bool(),
     isProspectionMember: bool(),
 });
-
 
 const validationSchemas = [
     informationStepValidationSchema,
@@ -96,7 +95,7 @@ export default function SetupAccountPage() {
     const maxSteps = 3;
     const hasPrevious = currentStep !== 0;
     const hasNext = currentStep !== maxSteps - 1;
-    const { token } = useSelector((state) => state.auth);
+    const { token, loading } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
     const previous = () => {
@@ -116,7 +115,6 @@ export default function SetupAccountPage() {
 
         handleSubmit(values);
     }
-
 
     return (
         <div className="sign_in_up_bg">
@@ -156,7 +154,7 @@ export default function SetupAccountPage() {
                                             {hasPrevious && (<button className="login-btn" type="button" onClick={previous}>Précédent</button>)}
                                             {
                                                 hasNext ? (<button className="login-btn" type="submit">Suivant</button>) :
-                                                    (<button className="login-btn" type="submit">Confirmer</button>)
+                                                    (<LoadingButton title="Confirmer" type="submit" loading={loading} />)
                                             }
                                         </div>
                                     </Form>

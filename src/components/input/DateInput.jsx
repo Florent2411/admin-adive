@@ -1,3 +1,5 @@
+import InputErrorMessage from "../error/InputErrorMessage";
+
 export default function DateInput({ name, onChange, value, placeholder, label, error }) {
     return (
         <div className="ui search focus mt-15">
@@ -14,7 +16,7 @@ export default function DateInput({ name, onChange, value, placeholder, label, e
             </div>
             {
                 error && (
-                    <small>{error.message}</small>
+                    <InputErrorMessage message={error.message} />
                 )
             }
         </div>

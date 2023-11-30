@@ -1,3 +1,5 @@
+import InputErrorMessage from "../error/InputErrorMessage";
+
 export default function TextAreaInput({ name, onChange, value, placeholder, label, error }) {
     return (
         <div class="ui search focus mt-15">
@@ -15,7 +17,7 @@ export default function TextAreaInput({ name, onChange, value, placeholder, labe
             </div>
             {
                 error && (
-                    <small>{error.message}</small>
+                    <InputErrorMessage message={error.message} />
                 )
             }
         </div>

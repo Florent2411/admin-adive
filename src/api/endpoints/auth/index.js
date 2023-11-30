@@ -1,6 +1,6 @@
 import apiClient from "../../client";
 
-export async function login(identifier, password) {
+export async function login({ identifier, password }) {
     const response = await apiClient.post("/auth/local", { identifier, password });
     return response.data;
 }

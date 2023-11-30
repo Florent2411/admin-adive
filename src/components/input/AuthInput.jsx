@@ -1,3 +1,5 @@
+import InputErrorMessage from "../error/InputErrorMessage";
+
 // TODO: Provide prop to hide password input text
 export default function AuthInput({ label, name, onChange, value, error, icon, type, placeholder }) {
     return (
@@ -15,12 +17,7 @@ export default function AuthInput({ label, name, onChange, value, error, icon, t
             </div>
             {
                 error && (
-                    <small
-                        style={{
-                            float: "left",
-                            color: "red",
-                        }}
-                    >{error.message}</small>
+                    <InputErrorMessage message={error.message} />
                 )
             }
         </div>
