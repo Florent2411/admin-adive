@@ -15,7 +15,12 @@ export default function AuthInput({ label, name, onChange, value, error, icon, t
             </div>
             {
                 error && (
-                    <small>{error.message}</small>
+                    <small
+                        style={{
+                            float: "left",
+                            color: "red",
+                        }}
+                    >{error.message}</small>
                 )
             }
         </div>
