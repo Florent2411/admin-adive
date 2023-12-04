@@ -7,3 +7,7 @@ export { default as TextAreaInput } from "./input/TextAreaInput";
 export { default as LoadingButton } from "./button/loading/LoadingButton";
 export { default as Spinner } from "./spinner/Spinner";
 
+export { default as CVFormAndPreview } from "./forms/cv/CVFormAndPreview";
+export { default as CVList } from "./list/CVList";
+export { default as CVPreview } from "./CVPreview";
+

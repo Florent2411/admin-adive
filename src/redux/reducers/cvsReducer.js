@@ -26,6 +26,18 @@ export const cvsReducer = (state = initialState, action) => {
         ...state,
         cvs: [...state.cvs, action.payload],
       };
+    case 'UPDATE_CV_SUCCESS':
+      return {
+        ...state,
+        cvs: state.cvs.map((cv) => {
+          if (cv.id === action.payload.id) {
+            cv = action.payload;
+          }
+
+          return cv;
+        }
+        ),
+      };
     case 'DELETE_CV_SUCCESS':
       return {
         ...state,

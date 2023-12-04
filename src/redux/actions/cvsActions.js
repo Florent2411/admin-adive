@@ -9,26 +9,16 @@ export const fetchCvsSuccess = (cvs) => {
   };
 };
 
-
-// export function createCV({ name, occupation, email, phone, address, picture, about, skills, hobbies, experiences, birthDate, education, other, languages, colors, ownerId, token }) {
-//   return async (dispatch) => {
-//     try {
-//       dispatch(requestStart());
-
-//       dispatch(createCvSuccess(cv));
-//     }
-//     catch (error) {
-//       console.error(error);
-//     }
-//     finally {
-//       dispatch(requestEnd());
-//     }
-//   };
-// }
-
 export function createCVRequest(payload) {
   return {
     type: 'CREATE_CV_REQUESTED',
+    payload,
+  }
+}
+
+export function updateCVRequest(payload) {
+  return {
+    type: 'UPDATE_CV_REQUESTED',
     payload,
   }
 }
@@ -37,6 +27,14 @@ export function deleteCVRequest(payload) {
   return {
     type: 'DELETE_CV_REQUESTED',
     payload,
+  }
+}
+
+export function updateCVSuccess(cv) {
+  Toaster.success("CV mis à jour avec succès");
+  return {
+    type: "UPDATE_CV_SUCCESS",
+    payload: cv
   }
 }
 
