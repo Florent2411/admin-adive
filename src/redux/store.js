@@ -7,10 +7,11 @@ import thunk from 'redux-thunk';
 import rootReducer from "../redux/reducers/rootReducer";
 import authSaga from "./sagas/auth";
 import cvsSaga from './sagas/cvs';
+import formationsSaga from "./sagas/formations";
 
 const persistConfig = {
-    key: 'root',
-    storage,
+  key: 'root',
+  storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -18,16 +19,17 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const sagaMiddleware = createSagaMiddleware();
 
 export const store = configureStore({
-    reducer: persistedReducer,
-    middleware: [
-        thunk,
-        sagaMiddleware,
-    ],
-    devTools: true
+  reducer: persistedReducer,
+  middleware: [
+    thunk,
+    sagaMiddleware,
+  ],
+  devTools: true
 });
 
 sagaMiddleware.run(authSaga);
 sagaMiddleware.run(cvsSaga);
+sagaMiddleware.run(formationsSaga);
 
 export const persistor = persistStore(store);
 

@@ -3,12 +3,12 @@ import { authReducer } from "./authReducer";
 import { blogsReducer } from "./blogsReducer";
 import { cvsReducer } from "./cvsReducer";
 import { jobsReducer } from "./jobsReducer";
-import { trainingsReducer } from "./trainingsReducer";
+import { formationsReducer } from './formationsReducer';
 
 const rootReducer = combineReducers({
   jobs: jobsReducer,
   blogs: blogsReducer,
-  trainings: trainingsReducer,
+  formations: formationsReducer,
   cvs: cvsReducer,
   auth: authReducer,
 });

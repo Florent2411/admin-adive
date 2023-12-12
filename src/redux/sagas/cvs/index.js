@@ -68,6 +68,7 @@ function* cvsSaga() {
   yield takeEvery('CREATE_CV_REQUESTED', createCV);
   yield takeEvery('UPDATE_CV_REQUESTED', updateCV);
   yield takeEvery('DELETE_CV_REQUESTED', deleteCV);
+  //TODO: Get all my CVs
 }
 
 export default cvsSaga;

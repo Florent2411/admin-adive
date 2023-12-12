@@ -13,6 +13,6 @@ export { default as DashboardPage } from "./DashboardPage";
 export { default as JobDetailsPage } from "./JobDetailsPage";
 export { default as JobsPage } from "./JobsPage";
 export { default as MyCVsPage } from "./MyCVsPage";
-export { default as TrainingDetailsPage } from "./TrainingDetailsPage";
-export { default as TrainingsPage } from "./TrainingsPage";
+export { default as FormationDetailsPage } from "./FormationDetailsPage";
+export { default as FormationsPage } from "./FormationsPage";
 
