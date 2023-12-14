@@ -10,7 +10,7 @@ import {
   CertificationTestResult, CreateCvPage,
   DashboardPage, FormationDetailsPage,
   FormationsPage, JobDetailsPage, JobsPage,
-  MyCVsPage, SetupAccountPage
+  MyCVsPage, MyJobsPage, SetupAccountPage
 } from "../pages";
 
 function Layout({ children }) {
@@ -42,6 +42,7 @@ export default function PrivateRoutes() {
               <Route exact path="/create-cv" element={<CreateCvPage />} />
               <Route exact path="/my-cvs" element={<MyCVsPage />} />
               <Route exact path="/jobs" element={<JobsPage />} />
+              <Route exact path="/my-jobs" element={< MyJobsPage />} />
               <Route exact path="/job-details/:id" element={<JobDetailsPage />} />
               <Route exact path="/formations" element={<FormationsPage />} />
               <Route exact path="/formation-details/:id" element={<FormationDetailsPage />} />

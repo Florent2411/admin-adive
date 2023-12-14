@@ -1,24 +1,28 @@
-import Toaster from "../../libs/notifications/toasts";
-
-export function requestStart() {
+export function loginRequest(identifier, password) {
   return {
-    type: 'REQUEST_START',
-  };
-}
-
-export function requestEnd() {
-  return {
-    type: 'REQUEST_END',
-  };
-}
-
-export function requestError(message) {
-  Toaster.error(message);
-  return {
-    type: 'REQUEST_ERROR',
+    type: 'LOGIN_REQUESTED',
     payload: {
-      message
+      identifier,
+      password,
     }
+  }
+}
+
+export function registerRequest({ username, email, password }) {
+  return {
+    type: 'REGISTER_REQUESTED',
+    payload: {
+      username,
+      email,
+      password,
+    }
+  }
+}
+
+export function setupAccountRequest(input) {
+  return {
+    type: 'SETUP_ACCOUNT_REQUESTED',
+    payload: input
   }
 }
 
@@ -55,33 +59,6 @@ export function logoutSuccess() {
   };
 }
 
-export function loginRequest(identifier, password) {
-  return {
-    type: 'LOGIN_REQUESTED',
-    payload: {
-      identifier,
-      password,
-    }
-  }
-}
-
-export function registerRequest({ username, email, password }) {
-  return {
-    type: 'REGISTER_REQUESTED',
-    payload: {
-      username,
-      email,
-      password,
-    }
-  }
-}
-
-export function setupAccountRequest(input) {
-  return {
-    type: 'SETUP_ACCOUNT_REQUESTED',
-    payload: input
-  }
-}
 
 export function logout() {
   return (dispatch) => {

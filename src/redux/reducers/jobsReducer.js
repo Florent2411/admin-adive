@@ -6,6 +6,16 @@ const initialState = {
 
 export const jobsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case 'REQUEST_START':
+      return {
+        ...state,
+        loading: true,
+      };
+    case 'REQUEST_END':
+      return {
+        ...state,
+        loading: false,
+      };
     case 'FETCH_JOBS_SUCCESS':
       return {
         ...state,

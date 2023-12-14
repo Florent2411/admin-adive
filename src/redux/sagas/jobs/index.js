@@ -2,14 +2,14 @@ import { AxiosError } from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
 import API from "../../../api/endpoints";
 import { requestEnd, requestError, requestStart } from "../../actions/commonActions";
-import { fetchFormationsSuccess } from "../../actions/formationsActions";
+import { fetchJobsSuccess } from "../../actions/jobsActions";
 
-function* fetchFormations(action) {
+function* fetchJobs(action) {
 
   try {
     yield put(requestStart())
-    const formations = yield call(API.formations.getFormations, action.payload);
-    yield put(fetchFormationsSuccess(formations));
+    const jobs = yield call(API.jobs.getJobs, action.payload);
+    yield put(fetchJobsSuccess(jobs));
   }
 
   catch (error) {
@@ -26,7 +26,7 @@ function* fetchFormations(action) {
 }
 
 function* cvsSaga() {
-  yield takeEvery('FETCH_FORMATIONS_REQUESTED', fetchFormations);
+  yield takeEvery('FETCH_JOBS_REQUESTED', fetchJobs);
 }
 
 export default cvsSaga;

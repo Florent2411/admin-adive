@@ -1,4 +1,33 @@
-import apiClient from '../../api/client';
+//==================== REQUEST =====================//
+export function fetchJobsRequest(payload) {
+  return {
+    type: 'FETCH_JOBS_REQUESTED',
+    payload,
+  }
+}
+
+export function createJobRequest(payload) {
+  return {
+    type: 'CREATE_JOB_REQUESTED',
+    payload,
+  }
+}
+
+export function updateJobRequest(payload) {
+  return {
+    type: 'UPDATE_JOB_REQUESTED',
+    payload,
+  }
+}
+
+export function deleteJobRequest(payload) {
+  return {
+    type: 'DELETE_JOB_REQUESTED',
+    payload,
+  }
+}
+
+//==================== SUCCESS =====================//
 
 export const fetchJobsSuccess = (jobs) => {
   return {
@@ -7,26 +36,30 @@ export const fetchJobsSuccess = (jobs) => {
   };
 };
 
-export const fetchJobs = (token) => {
-  return (dispatch) => {
-    apiClient.get("/jobs?populate=*", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then((response) => {
-        //console.log(response.data.data)
-        dispatch(fetchJobsSuccess(response.data.data));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-};
-
-export const selectJob = (jobId) => {
+export function updateJobSuccess(job) {
   return {
-    type: 'SELECT_JOB',
-    payload: jobId,
-  };
-};
+    type: "UPDATE_JOB_SUCCESS",
+    payload: job
+  }
+}
+
+export function createJobSuccess(job) {
+  return {
+    type: "CREATE_JOB_SUCCESS",
+    payload: job
+  }
+}
+
+export function deleteJobSuccess(jobId) {
+  return {
+    type: "DELETE_JOB_SUCCESS",
+    payload: jobId
+  }
+}
+
+export function selectJob(jobId) {
+  return {
+    type: "SELECT_JOB",
+    payload: jobId
+  }
+}

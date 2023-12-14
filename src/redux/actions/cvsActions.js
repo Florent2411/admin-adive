@@ -1,13 +1,8 @@
 import apiClient from "../../api/client";
 import Toaster from "../../libs/notifications/toasts";
-import { requestEnd, requestStart } from "./authActions";
+import { requestEnd, requestStart } from "./commonActions";
 
-export const fetchCvsSuccess = (cvs) => {
-  return {
-    type: 'FETCH_CVS_SUCCESS',
-    payload: cvs
-  };
-};
+//==================== REQUEST =====================//
 
 export function createCVRequest(payload) {
   return {
@@ -29,6 +24,15 @@ export function deleteCVRequest(payload) {
     payload,
   }
 }
+
+//==================== SUCCESS =====================//
+
+export const fetchCvsSuccess = (cvs) => {
+  return {
+    type: 'FETCH_CVS_SUCCESS',
+    payload: cvs
+  };
+};
 
 export function updateCVSuccess(cv) {
   Toaster.success("CV mis à jour avec succès");

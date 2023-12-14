@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 import { call, put, takeEvery } from "redux-saga/effects";
 import API from "../../../api/endpoints";
-import { requestEnd, requestError, requestStart } from "../../actions/authActions";
+import { requestEnd, requestError, requestStart } from "../../actions/commonActions";
 import { createCVSuccess, deleteCVSuccess, updateCVSuccess } from "../../actions/cvsActions";
 
 function* createCV(action) {

@@ -7,7 +7,9 @@ import thunk from 'redux-thunk';
 import rootReducer from "../redux/reducers/rootReducer";
 import authSaga from "./sagas/auth";
 import cvsSaga from './sagas/cvs';
+import jobsSaga from './sagas/jobs';
 import formationsSaga from "./sagas/formations";
+import postulationsSaga from "./sagas/postulations";
 
 const persistConfig = {
   key: 'root',
@@ -30,6 +32,8 @@ export const store = configureStore({
 sagaMiddleware.run(authSaga);
 sagaMiddleware.run(cvsSaga);
 sagaMiddleware.run(formationsSaga);
+sagaMiddleware.run(jobsSaga);
+sagaMiddleware.run(postulationsSaga);
 
 export const persistor = persistStore(store);
 

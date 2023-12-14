@@ -4,6 +4,7 @@ import { blogsReducer } from "./blogsReducer";
 import { cvsReducer } from "./cvsReducer";
 import { jobsReducer } from "./jobsReducer";
 import { formationsReducer } from './formationsReducer';
+import { postulationsReducer } from './postulationsReducer';
 
 const rootReducer = combineReducers({
   jobs: jobsReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   formations: formationsReducer,
   cvs: cvsReducer,
   auth: authReducer,
+  postulations: postulationsReducer,
 });
 
 export default rootReducer;

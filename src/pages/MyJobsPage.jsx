@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Job from '../components/Job';
-import ContentLoader from '../components/spinner/ContentLoader.jsx';
-import { fetchJobsRequest, selectJob } from '../redux/actions/jobsActions';
+import { selectJob } from '../redux/actions/jobsActions';
 import { SearchBar } from "../components";
+import ContentLoader from '../components/spinner/ContentLoader.jsx';
+import Job from '../components/Job';
 
-export default function JobsPage() {
-  const { jobs, loading } = useSelector((state) => state.jobs);
+export default function MyJobsPage() {
+  const { postulations, loading } = useSelector((state) => state.postulations);
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,9 +15,6 @@ export default function JobsPage() {
   const handleSearchInput = (searchInput) => {
   }
 
-  useEffect(() => {
-    dispatch(fetchJobsRequest(token));
-  }, [dispatch, token]);
 
   const handleJobClick = (jobId) => {
     navigate(`/job-details/${jobId}`);
@@ -36,8 +33,8 @@ export default function JobsPage() {
           <div className="col-md-12">
             <div className="_14d25">
               <div className="row">
-                {!loading && jobs.map((job) => (
-                  <Job job={job} onClick={() => handleJobClick(job.id)} />
+                {!loading && postulations.map((postulation) => (
+                  <Job job={postulation.job} onClick={() => handleJobClick(postulation.job.id)} />
                 ))}
                 {loading && <ContentLoader />}
               </div>
