@@ -5,6 +5,7 @@ import { cvsReducer } from "./cvsReducer";
 import { jobsReducer } from "./jobsReducer";
 import { formationsReducer } from './formationsReducer';
 import { postulationsReducer } from './postulationsReducer';
+import { documentsReducer } from './documentsReducer';
 
 const rootReducer = combineReducers({
   jobs: jobsReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   cvs: cvsReducer,
   auth: authReducer,
   postulations: postulationsReducer,
+  documents: documentsReducer,
 });
 
 export default rootReducer;

@@ -16,4 +16,5 @@ export { default as MyCVsPage } from "./MyCVsPage";
 export { default as MyJobsPage } from "./MyJobsPage";
 export { default as FormationDetailsPage } from "./FormationDetailsPage";
 export { default as FormationsPage } from "./FormationsPage";
+export { default as LibraryPage } from "./LibraryPage";
 

@@ -10,6 +10,7 @@ import {
   CertificationTestResult, CreateCvPage,
   DashboardPage, FormationDetailsPage,
   FormationsPage, JobDetailsPage, JobsPage,
+  LibraryPage,
   MyCVsPage, MyJobsPage, SetupAccountPage
 } from "../pages";
 
@@ -44,6 +45,7 @@ export default function PrivateRoutes() {
               <Route exact path="/jobs" element={<JobsPage />} />
               <Route exact path="/my-jobs" element={< MyJobsPage />} />
               <Route exact path="/job-details/:id" element={<JobDetailsPage />} />
+              <Route exact path="/library" element={<LibraryPage />} />
               <Route exact path="/formations" element={<FormationsPage />} />
               <Route exact path="/formation-details/:id" element={<FormationDetailsPage />} />
               <Route exact path="/certification-center" element={<CertificationCenter />} />

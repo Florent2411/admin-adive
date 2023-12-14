@@ -10,6 +10,7 @@ import cvsSaga from './sagas/cvs';
 import jobsSaga from './sagas/jobs';
 import formationsSaga from "./sagas/formations";
 import postulationsSaga from "./sagas/postulations";
+import documentsSaga from "./sagas/documents";
 
 const persistConfig = {
   key: 'root',
@@ -34,6 +35,7 @@ sagaMiddleware.run(cvsSaga);
 sagaMiddleware.run(formationsSaga);
 sagaMiddleware.run(jobsSaga);
 sagaMiddleware.run(postulationsSaga);
+sagaMiddleware.run(documentsSaga);
 
 export const persistor = persistStore(store);
 
