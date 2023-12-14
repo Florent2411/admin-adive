@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const sidebarItems = [
   {
@@ -42,6 +43,11 @@ const sidebarItems = [
     icon: "plus-circle",
   },
   {
+    title: "Bibliothèque",
+    link: "/library",
+    icon: "book-alt",
+  },
+  {
     title: "Mes Souscriptions",
     link: "/my-subscriptions",
     icon: "comments",
@@ -77,10 +83,10 @@ export default function Sidebar() {
             {
               sidebarItems.map((item) => (
                 <li className="menu--item">
-                  <a href={item.link} className="menu--link" title={item.title}>
+                  <NavLink to={item.link} className={({ isActive }) => `menu--link ${isActive ? "active" : ""}`} title={item.title}>
                     <i className={`uil uil-${item.icon} menu--icon`} />
                     <span className="menu--label">{item.title}</span>
-                  </a>
+                  </NavLink>
                 </li>
               ))
             }
@@ -91,10 +97,10 @@ export default function Sidebar() {
             {
               sidebarBottomItems.map((item) => (
                 <li className="menu--item">
-                  <a href={item.link} className="menu--link" title={item.title}>
+                  <NavLink to={item.link} className={({ isActive }) => `menu--link ${isActive ? "active" : ""}`} title={item.title}>
                     <i className={`uil uil-${item.icon} menu--icon`} />
                     <span className="menu--label">{item.title}</span>
-                  </a>
+                  </NavLink>
                 </li>
               ))
             }
